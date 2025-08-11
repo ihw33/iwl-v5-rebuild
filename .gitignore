@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# figma downloads (temporary files)
+/figma-downloads/*
+!/figma-downloads/README.md
