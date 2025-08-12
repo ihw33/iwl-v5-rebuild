@@ -2,6 +2,9 @@ import { LessonOverview } from "./LessonOverview";
 import { TrainingProcess } from "./TrainingProcess";
 import { PersonaCard } from "./PersonaCard";
 import { LessonTabs } from "./LessonTabs";
+import { MatrixVisualization } from "./MatrixVisualization";
+import { ThinkingStagesVisualization } from "./ThinkingStagesVisualization";
+import { CriteriaChartVisualization } from "./CriteriaChartVisualization";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ArrowRight, BarChart3, Gamepad2, MessageSquare, Users } from "lucide-react";
 import { Home } from "lucide-react";
@@ -169,7 +172,7 @@ export function LessonDesignPage() {
     <div className="w-full max-w-7xl mx-auto p-6">
       {/* 헤더 섹션 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl mb-2">생각정리 훈련 프로그램</h1>
+        <h1 className="text-4xl mb-2">IWL 이론체계 & 훈련 프로그램</h1>
         <p className="text-xl text-muted-foreground mb-4">8단계 사고 확장 기반 체계적 교육 설계</p>
         <Link href="/">
           <Button variant="outline" className="mb-8">
@@ -179,26 +182,47 @@ export function LessonDesignPage() {
         </Link>
       </div>
 
-      {/* 프로그램 개요 카드 */}
-      <LessonOverview />
+      {/* 핵심 이론 섹션 */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-12">📚 핵심 이론체계</h2>
+        
+        {/* 8x4 매트릭스 */}
+        <MatrixVisualization />
+        
+        {/* 8단계 사고 모델 */}
+        <ThinkingStagesVisualization />
+        
+        {/* 4가지 구분 기준 */}
+        <CriteriaChartVisualization />
+      </div>
 
-      {/* 5단계 훈련 프로세스 */}
-      <TrainingProcess />
+      <hr className="my-16 border-gray-200" />
 
-      {/* 페르소나 섹션 */}
-      <PersonaCard />
+      {/* 훈련 프로그램 섹션 */}
+      <div>
+        <h2 className="text-3xl font-bold text-center mb-12">🎓 생각정리 훈련 프로그램</h2>
+        
+        {/* 프로그램 개요 카드 */}
+        <LessonOverview />
 
-      {/* 실습 교안 탭 섹션 */}
-      <LessonTabs />
+        {/* 5단계 훈련 프로세스 */}
+        <TrainingProcess />
 
-      {/* AI 협력 전략 테이블 */}
-      <AIStrategyTable />
+        {/* 페르소나 섹션 */}
+        <PersonaCard />
 
-      {/* 사고-정리 연결 다이어그램 */}
-      <ThinkingConnectionDiagram />
+        {/* 실습 교안 탭 섹션 */}
+        <LessonTabs />
 
-      {/* 확장 모듈 카드 그리드 */}
-      <ExpansionModules />
+        {/* AI 협력 전략 테이블 */}
+        <AIStrategyTable />
+
+        {/* 사고-정리 연결 다이어그램 */}
+        <ThinkingConnectionDiagram />
+
+        {/* 확장 모듈 카드 그리드 */}
+        <ExpansionModules />
+      </div>
     </div>
   );
 }
