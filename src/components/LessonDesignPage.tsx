@@ -172,7 +172,7 @@ function AIStrategyTable() {
 }
 
 export function LessonDesignPage() {
-  const [activeTab, setActiveTab] = useState("matrix");
+  const [activeTab, setActiveTab] = useState("theory");
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
@@ -188,64 +188,75 @@ export function LessonDesignPage() {
         </Link>
       </div>
 
-      {/* 탭 네비게이션 */}
+      {/* 메인 탭 네비게이션 */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4 mb-8">
-          <TabsTrigger value="matrix" className="flex items-center gap-2">
-            <Grid3x3 className="w-4 h-4" />
-            8×4 매트릭스
-          </TabsTrigger>
-          <TabsTrigger value="stages" className="flex items-center gap-2">
+        <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsTrigger value="theory" className="flex items-center gap-2">
             <Layers className="w-4 h-4" />
-            8단계 사고 모델
+            🎨 핵심 이론체계
           </TabsTrigger>
-          <TabsTrigger value="criteria" className="flex items-center gap-2">
-            <ChartBar className="w-4 h-4" />
-            4가지 구분 기준
-          </TabsTrigger>
-          <TabsTrigger value="program" className="flex items-center gap-2">
+          <TabsTrigger value="lesson" className="flex items-center gap-2">
             <GraduationCap className="w-4 h-4" />
-            훈련 프로그램
+            📋 수업 설계
           </TabsTrigger>
         </TabsList>
 
-        {/* 8x4 매트릭스 탭 */}
-        <TabsContent value="matrix" className="space-y-6">
-          <MatrixVisualization />
+        {/* 핵심 이론체계 탭 */}
+        <TabsContent value="theory" className="space-y-6">
+          <Tabs defaultValue="matrix" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-6">
+              <TabsTrigger value="matrix">8×4 매트릭스</TabsTrigger>
+              <TabsTrigger value="stages">8단계 사고 모델</TabsTrigger>
+              <TabsTrigger value="criteria">4가지 구분 기준</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="matrix" className="space-y-6">
+              <MatrixVisualization />
+            </TabsContent>
+            
+            <TabsContent value="stages" className="space-y-6">
+              <ThinkingStagesVisualization />
+            </TabsContent>
+            
+            <TabsContent value="criteria" className="space-y-6">
+              <CriteriaChartVisualization />
+            </TabsContent>
+          </Tabs>
         </TabsContent>
 
-        {/* 8단계 사고 모델 탭 */}
-        <TabsContent value="stages" className="space-y-6">
-          <ThinkingStagesVisualization />
-        </TabsContent>
-
-        {/* 4가지 구분 기준 탭 */}
-        <TabsContent value="criteria" className="space-y-6">
-          <CriteriaChartVisualization />
-        </TabsContent>
-
-        {/* 훈련 프로그램 탭 */}
-        <TabsContent value="program" className="space-y-8">
-          {/* 프로그램 개요 카드 */}
-          <LessonOverview />
-
-          {/* 5단계 훈련 프로세스 */}
-          <TrainingProcess />
-
-          {/* 페르소나 섹션 */}
-          <PersonaCard />
-
-          {/* 실습 교안 탭 섹션 */}
-          <LessonTabs />
-
-          {/* AI 협력 전략 테이블 */}
-          <AIStrategyTable />
-
-          {/* 사고-정리 연결 다이어그램 */}
-          <ThinkingConnectionDiagram />
-
-          {/* 확장 모듈 카드 그리드 */}
-          <ExpansionModules />
+        {/* 수업 설계 탭 */}
+        <TabsContent value="lesson" className="space-y-6">
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-4 mb-6">
+              <TabsTrigger value="overview">프로그램 개요</TabsTrigger>
+              <TabsTrigger value="practice">실습 교안</TabsTrigger>
+              <TabsTrigger value="ai">AI 협력 전략</TabsTrigger>
+              <TabsTrigger value="expansion">확장 모듈</TabsTrigger>
+            </TabsList>
+            
+            {/* 프로그램 개요 탭 */}
+            <TabsContent value="overview" className="space-y-6">
+              <LessonOverview />
+              <TrainingProcess />
+              <PersonaCard />
+            </TabsContent>
+            
+            {/* 실습 교안 탭 */}
+            <TabsContent value="practice" className="space-y-6">
+              <LessonTabs />
+            </TabsContent>
+            
+            {/* AI 협력 전략 탭 */}
+            <TabsContent value="ai" className="space-y-6">
+              <AIStrategyTable />
+              <ThinkingConnectionDiagram />
+            </TabsContent>
+            
+            {/* 확장 모듈 탭 */}
+            <TabsContent value="expansion" className="space-y-6">
+              <ExpansionModules />
+            </TabsContent>
+          </Tabs>
         </TabsContent>
       </Tabs>
     </div>
