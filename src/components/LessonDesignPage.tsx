@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { LessonOverview } from "./LessonOverview";
 import { TrainingProcess } from "./TrainingProcess";
 import { PersonaCard } from "./PersonaCard";
@@ -6,7 +9,8 @@ import { MatrixVisualization } from "./MatrixVisualization";
 import { ThinkingStagesVisualization } from "./ThinkingStagesVisualization";
 import { CriteriaChartVisualization } from "./CriteriaChartVisualization";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { ArrowRight, BarChart3, Gamepad2, MessageSquare, Users } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { ArrowRight, BarChart3, Gamepad2, MessageSquare, Users, Grid3x3, Layers, ChartBar, GraduationCap } from "lucide-react";
 import { Home } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -168,61 +172,82 @@ function AIStrategyTable() {
 }
 
 export function LessonDesignPage() {
+  const [activeTab, setActiveTab] = useState("matrix");
+
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
       {/* 헤더 섹션 */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <h1 className="text-4xl mb-2">IWL 이론체계 & 훈련 프로그램</h1>
         <p className="text-xl text-muted-foreground mb-4">8단계 사고 확장 기반 체계적 교육 설계</p>
         <Link href="/">
-          <Button variant="outline" className="mb-8">
+          <Button variant="outline" className="mb-6">
             <Home className="w-4 h-4 mr-2" />
             홈으로 돌아가기
           </Button>
         </Link>
       </div>
 
-      {/* 핵심 이론 섹션 */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">📚 핵심 이론체계</h2>
-        
-        {/* 8x4 매트릭스 */}
-        <MatrixVisualization />
-        
-        {/* 8단계 사고 모델 */}
-        <ThinkingStagesVisualization />
-        
-        {/* 4가지 구분 기준 */}
-        <CriteriaChartVisualization />
-      </div>
+      {/* 탭 네비게이션 */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsTrigger value="matrix" className="flex items-center gap-2">
+            <Grid3x3 className="w-4 h-4" />
+            8×4 매트릭스
+          </TabsTrigger>
+          <TabsTrigger value="stages" className="flex items-center gap-2">
+            <Layers className="w-4 h-4" />
+            8단계 사고 모델
+          </TabsTrigger>
+          <TabsTrigger value="criteria" className="flex items-center gap-2">
+            <ChartBar className="w-4 h-4" />
+            4가지 구분 기준
+          </TabsTrigger>
+          <TabsTrigger value="program" className="flex items-center gap-2">
+            <GraduationCap className="w-4 h-4" />
+            훈련 프로그램
+          </TabsTrigger>
+        </TabsList>
 
-      <hr className="my-16 border-gray-200" />
+        {/* 8x4 매트릭스 탭 */}
+        <TabsContent value="matrix" className="space-y-6">
+          <MatrixVisualization />
+        </TabsContent>
 
-      {/* 훈련 프로그램 섹션 */}
-      <div>
-        <h2 className="text-3xl font-bold text-center mb-12">🎓 생각정리 훈련 프로그램</h2>
-        
-        {/* 프로그램 개요 카드 */}
-        <LessonOverview />
+        {/* 8단계 사고 모델 탭 */}
+        <TabsContent value="stages" className="space-y-6">
+          <ThinkingStagesVisualization />
+        </TabsContent>
 
-        {/* 5단계 훈련 프로세스 */}
-        <TrainingProcess />
+        {/* 4가지 구분 기준 탭 */}
+        <TabsContent value="criteria" className="space-y-6">
+          <CriteriaChartVisualization />
+        </TabsContent>
 
-        {/* 페르소나 섹션 */}
-        <PersonaCard />
+        {/* 훈련 프로그램 탭 */}
+        <TabsContent value="program" className="space-y-8">
+          {/* 프로그램 개요 카드 */}
+          <LessonOverview />
 
-        {/* 실습 교안 탭 섹션 */}
-        <LessonTabs />
+          {/* 5단계 훈련 프로세스 */}
+          <TrainingProcess />
 
-        {/* AI 협력 전략 테이블 */}
-        <AIStrategyTable />
+          {/* 페르소나 섹션 */}
+          <PersonaCard />
 
-        {/* 사고-정리 연결 다이어그램 */}
-        <ThinkingConnectionDiagram />
+          {/* 실습 교안 탭 섹션 */}
+          <LessonTabs />
 
-        {/* 확장 모듈 카드 그리드 */}
-        <ExpansionModules />
-      </div>
+          {/* AI 협력 전략 테이블 */}
+          <AIStrategyTable />
+
+          {/* 사고-정리 연결 다이어그램 */}
+          <ThinkingConnectionDiagram />
+
+          {/* 확장 모듈 카드 그리드 */}
+          <ExpansionModules />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
