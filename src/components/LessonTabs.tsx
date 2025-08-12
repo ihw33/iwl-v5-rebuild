@@ -4,9 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { Button } from "./ui/button";
-import { ChevronDown, Eye, PenTool, Bot, Clock, Target, BookOpen } from "lucide-react";
-import { THINKING_STAGE_COLORS } from "../lib/constants";
+import { ChevronDown, Eye, PenTool, Bot, Clock, Target, BookOpen, CheckCircle, Brain, Lightbulb } from "lucide-react";
 import { useState } from "react";
+import { lessonStages, STAGE_COLORS, STAGE_ICONS } from "../data/lessonContent";
 
 export function LessonTabs() {
   const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({});
@@ -19,315 +19,239 @@ export function LessonTabs() {
     <div className="mb-12">
       <div className="text-center mb-8">
         <h2 className="text-2xl mb-2">실습 교안</h2>
-        <p className="text-muted-foreground">단계별 구체적인 수업 계획과 실습 활동</p>
+        <p className="text-muted-foreground">8단계 사고 확장 훈련 프로그램</p>
       </div>
 
       <Tabs defaultValue="stage1" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="stage1">1단계: 지각인지</TabsTrigger>
-          <TabsTrigger value="stage3">3단계: 구조적이해</TabsTrigger>
-          <TabsTrigger value="ai-strategy">AI 협력 전략</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 gap-2 h-auto p-2">
+          {lessonStages.slice(0, 4).map((stage) => (
+            <TabsTrigger 
+              key={stage.stage} 
+              value={`stage${stage.stage}`}
+              className="flex items-center gap-1 text-xs py-2"
+            >
+              <span>{STAGE_ICONS[stage.stage]}</span>
+              <span>{stage.stage}단계: {stage.title}</span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        
+        <TabsList className="grid w-full grid-cols-4 gap-2 h-auto p-2 mt-2">
+          {lessonStages.slice(4, 8).map((stage) => (
+            <TabsTrigger 
+              key={stage.stage} 
+              value={`stage${stage.stage}`}
+              className="flex items-center gap-1 text-xs py-2"
+            >
+              <span>{STAGE_ICONS[stage.stage]}</span>
+              <span>{stage.stage}단계: {stage.title}</span>
+            </TabsTrigger>
+          ))}
         </TabsList>
 
-        {/* 1단계 탭 내용 */}
-        <TabsContent value="stage1" className="mt-6">
-          <div className="space-y-6">
-            {/* 학습 목표 박스 */}
-            <Card style={{ borderLeft: `4px solid ${THINKING_STAGE_COLORS[1]}` }}>
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="w-5 h-5" style={{ color: THINKING_STAGE_COLORS[1] }} />
-                  학습 목표
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li>• 감각적 인지 능력 향상</li>
-                  <li>• 순간 집중력 훈련</li>
-                  <li>• 관찰력과 인식력 강화</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* 수업 구성 */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-blue-500" />
-                  수업 구성 (총 35분)
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-blue-50 rounded-lg">
-                    <h4 className="mb-2">도입 (5분)</h4>
-                    <p className="text-sm text-muted-foreground">
-                      지각인지란 무엇인가?<br/>
-                      일상의 인지 패턴 점검
-                    </p>
-                  </div>
-                  <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <h4 className="mb-2">본 수업 (25분)</h4>
-                    <p className="text-sm text-muted-foreground">
-                      감각 기반 실습<br/>
-                      관찰력 훈련 활동
-                    </p>
-                  </div>
-                  <div className="text-center p-4 bg-purple-50 rounded-lg">
-                    <h4 className="mb-2">마무리 (5분)</h4>
-                    <p className="text-sm text-muted-foreground">
-                      학습 내용 정리<br/>
-                      다음 단계 예고
-                    </p>
-                  </div>
+        {/* 각 단계별 탭 내용 */}
+        {lessonStages.map((stage) => (
+          <TabsContent key={stage.stage} value={`stage${stage.stage}`} className="mt-6">
+            <div className="space-y-6">
+              {/* 단계 헤더 */}
+              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: STAGE_COLORS[stage.stage] + "20" }}>
+                <h3 className="text-2xl mb-2">
+                  {STAGE_ICONS[stage.stage]} {stage.stage}단계: {stage.title}
+                </h3>
+                <p className="text-lg text-muted-foreground">{stage.subtitle}</p>
+                <div className="mt-3 p-3 bg-white/80 rounded-md inline-block">
+                  <p className="text-sm italic">"{stage.learnerMindset}"</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* 실습 예시 카드 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardHeader>
+              {/* 학습 목표 */}
+              <Card style={{ borderLeft: `4px solid ${STAGE_COLORS[stage.stage]}` }}>
+                <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2">
-                    <Eye className="w-5 h-5 text-green-500" />
-                    실습 1: 감각 기반 목록 만들기
+                    <Target className="w-5 h-5" style={{ color: STAGE_COLORS[stage.stage] }} />
+                    학습 목표
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <h5 className="mb-1">활동 내용:</h5>
-                      <p className="text-sm text-muted-foreground">
-                        주변 환경에서 보이는, 들리는, 느껴지는 것들을 5분간 목록화
-                      </p>
+                  <ul className="space-y-2">
+                    {stage.objectives.map((objective, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 mt-0.5 text-green-500 flex-shrink-0" />
+                        <span>{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* 수업 구성 */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-blue-500" />
+                    수업 구성 (총 35분)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center p-4 bg-blue-50 rounded-lg">
+                      <h4 className="mb-2">도입 ({stage.lessonFlow.intro.duration})</h4>
+                      <div className="text-sm text-muted-foreground space-y-1">
+                        {stage.lessonFlow.intro.content.map((item, idx) => (
+                          <p key={idx}>{item}</p>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="mb-1">진행 방식:</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        <li>1. 1분간 조용히 집중</li>
-                        <li>2. 시각, 청각, 촉각 순서로 인지</li>
-                        <li>3. 목록 작성 및 공유</li>
-                      </ul>
+                    <div className="text-center p-4 bg-green-50 rounded-lg">
+                      <h4 className="mb-2">본 수업 ({stage.lessonFlow.main.duration})</h4>
+                      <div className="text-sm text-muted-foreground space-y-1">
+                        {stage.lessonFlow.main.content.map((item, idx) => (
+                          <p key={idx}>{item}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="text-center p-4 bg-purple-50 rounded-lg">
+                      <h4 className="mb-2">마무리 ({stage.lessonFlow.wrap.duration})</h4>
+                      <div className="text-sm text-muted-foreground space-y-1">
+                        {stage.lessonFlow.wrap.content.map((item, idx) => (
+                          <p key={idx}>{item}</p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow">
+              {/* 실습 활동 */}
+              <div className="space-y-4">
+                <h3 className="text-xl mb-4 flex items-center gap-2">
+                  <PenTool className="w-5 h-5 text-orange-500" />
+                  실습 활동
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {stage.practiceActivities.map((activity, idx) => (
+                    <Card key={idx} className="hover:shadow-lg transition-shadow">
+                      <CardHeader>
+                        <CardTitle className="text-lg">{activity.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground mb-3">{activity.description}</p>
+                        {activity.steps && (
+                          <div className="space-y-1">
+                            <p className="text-sm mb-2">진행 단계:</p>
+                            {activity.steps.map((step, stepIdx) => (
+                              <div key={stepIdx} className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
+                                <span className="text-sm">{step}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              {/* AI 협력 전략 */}
+              <Card className="border-purple-200 bg-purple-50/50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <PenTool className="w-5 h-5 text-orange-500" />
-                    실습 2: 책상 위 물건 묘사 실습
+                    <Bot className="w-5 h-5 text-purple-500" />
+                    AI 협력 전략
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div>
-                      <h5 className="mb-1">활동 내용:</h5>
-                      <p className="text-sm text-muted-foreground">
-                        책상 위 하나의 물건을 선택해 최대한 세밀하게 묘사하기
-                      </p>
+                      <h5 className="text-sm mb-2">프롬프트 예시:</h5>
+                      <div className="p-3 bg-white rounded-md border border-purple-200">
+                        <code className="text-sm">{stage.aiStrategy.prompt}</code>
+                      </div>
                     </div>
                     <div>
-                      <h5 className="mb-1">평가 기준:</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        <li>• 세부 관찰 정도</li>
-                        <li>• 다감각적 표현</li>
-                        <li>• 객관적 묘사 능력</li>
-                      </ul>
+                      <h5 className="text-sm mb-2">활용 방법:</h5>
+                      <p className="text-sm text-muted-foreground">{stage.aiStrategy.usage}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
 
-            {/* 이론적 토대 (접을 수 있는 섹션) */}
-            <Collapsible open={openSections['theory1']} onOpenChange={() => toggleSection('theory1')}>
-              <CollapsibleTrigger asChild>
-                <Button variant="outline" className="w-full justify-between">
-                  <span className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    이론적 토대
-                  </span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${openSections['theory1'] ? 'rotate-180' : ''}`} />
-                </Button>
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-4">
-                <Card>
-                  <CardContent className="p-6">
-                    <h4 className="mb-3">지각인지 단계의 이론적 배경</h4>
-                    <div className="space-y-3 text-sm text-muted-foreground">
-                      <p>
-                        지각인지는 외부 자극을 감각 기관을 통해 받아들이는 가장 기초적인 사고 단계입니다.
-                        이 단계에서는 판단이나 해석 없이 순수한 감각적 수용이 이루어집니다.
+              {/* 이론적 토대 (접을 수 있는 섹션) */}
+              <Collapsible 
+                open={openSections[`theory${stage.stage}`]} 
+                onOpenChange={() => toggleSection(`theory${stage.stage}`)}
+              >
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="w-full justify-between">
+                    <span className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" />
+                      이론적 토대
+                    </span>
+                    <ChevronDown 
+                      className={`w-4 h-4 transition-transform ${
+                        openSections[`theory${stage.stage}`] ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{stage.theoreticalFoundation.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {stage.theoreticalFoundation.theories.map((theory, idx) => (
+                          <div key={idx} className="border-l-2 border-gray-200 pl-4">
+                            <h5 className="mb-1">{theory.name}</h5>
+                            <p className="text-sm text-muted-foreground">{theory.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* 단계별 연계성 (1, 4, 8단계에만 표시) */}
+              {[1, 4, 8].includes(stage.stage) && (
+                <Card className="bg-gradient-to-r from-blue-50 to-purple-50">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Brain className="w-5 h-5 text-indigo-500" />
+                      단계별 연계성
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {stage.stage === 1 && (
+                      <p className="text-sm">
+                        <strong>1-2단계 (INPUT)</strong>: 지각인지와 요약이해는 정보를 수집하고 정리하는 기초 단계입니다. 
+                        이 단계에서 형성된 관찰력과 핵심 파악 능력은 이후 모든 사고 과정의 토대가 됩니다.
                       </p>
-                      <p>
-                        인지과학 연구에 따르면, 의식적 주의집중을 통해 지각의 정확도와 범위를 
-                        현저히 향상시킬 수 있습니다.
+                    )}
+                    {stage.stage === 4 && (
+                      <p className="text-sm">
+                        <strong>3-4단계 (PROCESS)</strong>: 구조적 이해와 비판적 사고는 정보를 분석하고 평가하는 중간 단계입니다. 
+                        패턴을 파악하고 논리적으로 검증하는 능력을 통해 깊이 있는 사고가 가능해집니다.
                       </p>
-                      <p>
-                        이 단계의 훈련은 이후 모든 고차원적 사고의 토대가 되는 '정확한 정보 입력'을 
-                        보장하는 핵심적 역할을 합니다.
-                      </p>
-                    </div>
+                    )}
+                    {stage.stage === 8 && (
+                      <div className="space-y-2">
+                        <p className="text-sm">
+                          <strong>5-6단계 (CREATE)</strong>: 의미 파악과 창조적 통합은 새로운 가치를 창출하는 고차원 단계입니다.
+                        </p>
+                        <p className="text-sm">
+                          <strong>7-8단계 (OUTPUT & FEEDBACK)</strong>: 실행과 메타인지는 생각을 현실화하고 지속적으로 개선하는 완성 단계입니다.
+                        </p>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
-              </CollapsibleContent>
-            </Collapsible>
-          </div>
-        </TabsContent>
-
-        {/* 3단계 탭 내용 */}
-        <TabsContent value="stage3" className="mt-6">
-          <div className="space-y-6">
-            {/* 학습 목표 박스 */}
-            <Card style={{ borderLeft: `4px solid ${THINKING_STAGE_COLORS[3]}` }}>
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="w-5 h-5" style={{ color: THINKING_STAGE_COLORS[3] }} />
-                  학습 목표
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li>• 정보의 구조적 패턴 인식</li>
-                  <li>• 논리적 관계 파악 능력 향상</li>
-                  <li>• 체계적 분석 사고 개발</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            {/* 구조화 3단계 절차 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>구조화 3단계 절차</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-blue-50 rounded-lg">
-                    <div className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center mx-auto mb-3">1</div>
-                    <h4 className="mb-2">분해</h4>
-                    <p className="text-sm text-muted-foreground">
-                      복잡한 정보를<br/>구성 요소로 나누기
-                    </p>
-                  </div>
-                  <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <div className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center mx-auto mb-3">2</div>
-                    <h4 className="mb-2">관계파악</h4>
-                    <p className="text-sm text-muted-foreground">
-                      요소 간의 연결고리와<br/>상호작용 분석
-                    </p>
-                  </div>
-                  <div className="text-center p-4 bg-purple-50 rounded-lg">
-                    <div className="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center mx-auto mb-3">3</div>
-                    <h4 className="mb-2">재구성</h4>
-                    <p className="text-sm text-muted-foreground">
-                      논리적 구조로<br/>체계화하여 정리
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* 실습 활동 카드 */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle>실습: 기사 내용 구조 분석</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    제공된 뉴스 기사를 읽고 다음 구조로 분석해보세요:
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <h5 className="mb-2">핵심 구성 요소</h5>
-                      <ul className="text-sm space-y-1">
-                        <li>□ 사실 (What)</li>
-                        <li>□ 원인 (Why)</li>
-                        <li>□ 결과 (Result)</li>
-                        <li>□ 영향 (Impact)</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h5 className="mb-2">논리적 흐름</h5>
-                      <ul className="text-sm space-y-1">
-                        <li>□ 시간적 순서</li>
-                        <li>□ 인과관계</li>
-                        <li>□ 우선순위</li>
-                        <li>□ 상호작용</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* AI 활용 예시 */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Bot className="w-5 h-5 text-purple-500" />
-                  AI 활용 예시
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="p-3 bg-gray-50 rounded">
-                    <h5 className="text-sm mb-1">AI 프롬프트 예시:</h5>
-                    <p className="text-sm font-mono bg-white p-2 rounded border">
-                      "다음 텍스트를 주요 구성 요소로 분해하고, 각 요소 간의 논리적 관계를 
-                      다이어그램 형태로 정리해주세요: [텍스트 입력]"
-                    </p>
-                  </div>
-                  <div className="p-3 bg-blue-50 rounded">
-                    <h5 className="text-sm mb-1">기대 결과:</h5>
-                    <p className="text-sm text-muted-foreground">
-                      AI가 제안한 구조와 학습자의 분석을 비교하여 
-                      구조적 사고의 정확성을 확인할 수 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-
-        {/* AI 협력 전략 탭 */}
-        <TabsContent value="ai-strategy" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>단계별 AI 협력 가이드</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-6">
-                각 사고 단계에서 AI를 효과적으로 활용하는 방법과 실제 프롬프트 예시입니다.
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  { stage: "1단계", name: "지각인지", role: "자극 제시자", keywords: "연상, 감각 묘사, 관찰 유도" },
-                  { stage: "2단계", name: "요약이해", role: "요약 비교자", keywords: "요점 정리, 핵심 추출" },
-                  { stage: "3단계", name: "구조적이해", role: "구조 분석가", keywords: "분해, 관계 분석, 체계화" },
-                  { stage: "4단계", name: "비판적사고", role: "논리 검증자", keywords: "논증 분석, 반박 제시" }
-                ].map((item, index) => (
-                  <div key={index} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-medium">{item.stage}</span>
-                        <span className="text-muted-foreground">{item.name}</span>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm">{item.role}</div>
-                        <div className="text-xs text-muted-foreground">{item.keywords}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+              )}
+            </div>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );
