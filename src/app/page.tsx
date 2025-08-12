@@ -28,14 +28,17 @@ export default function Home() {
             </p>
           </Link>
 
-          <div className="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-500 mb-2">
-              📚 수업 설계
+          <Link 
+            href="/lesson-design" 
+            className="block p-6 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 transition-colors"
+          >
+            <h3 className="text-xl font-semibold text-green-900 mb-2">
+              📚 수업 설계 & 훈련 프로그램
             </h3>
-            <p className="text-gray-500">
-              준비중... (1단계 지각인지 실습 모듈)
+            <p className="text-green-700">
+              5단계 프로세스 + 실습 교안 + AI 협력 전략
             </p>
-          </div>
+          </Link>
         </div>
       </section>
     </div>
