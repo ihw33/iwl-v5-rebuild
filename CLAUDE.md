@@ -4,11 +4,11 @@
 - **배경**: 기존 FigmaMake 자동생성 코드의 한계로 인한 제어권 부족
 - **결정**: 완전 새출발로 iwl-v5-rebuild 프로젝트 시작
 
-### 🤖 새로운 AI 팀 구성 (7개 AI 협업)
+### 🤖 새로운 AI 팀 구성 (7개 AI 협업) - 2025-08-13 업데이트
 1. **PM Claude (터미널)**: 전체 관리, GitHub 조작, 프로젝트 조율
-2. **Cursor CLI (ChatGPT-5)**: 기획, 아키텍처 설계, 전략 수립, 문서화
+2. **Cursor CLI (ChatGPT-5)**: 콘텐츠 기획, 학습 시나리오, 사용자 스토리
 3. **Codex CLI**: 백엔드, API, 데이터베이스, 서버 로직
-4. **Gemini CLI**: 콘텐츠 기획, 교육 시나리오, UX 설계
+4. **Gemini CLI**: 기술 아키텍처, 시스템 설계, API 스펙
 5. **VSCode Claude**: 프론트엔드 컴포넌트, UI 구현
 6. **GitHub Copilot**: 코드 자동생성, 반복 작업 지원
 7. **FigmaMake**: 디자인 시스템, 초기 컴포넌트 생성
