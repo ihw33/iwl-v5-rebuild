@@ -36,3 +36,9 @@
 - Treat this document as the single source of truth for terminology
 - Reference in issues/PRs: "References: DECISIONS/A1 + #9"
 - Apply consistently across A2–A4 and all curriculum issues (B0–B5)
+
+## 원저작 고지 (Original Authorship Notice)
+- 본 문서(A1)와 IWL Original Model 관련 결정 문서(A2, A3 등)의 원저작자는 IdeaWorkLab(IWL)입니다.
+- 최초 승인일: 2025-08-13, 최종 승인자: Thomas.
+- 재배포/인용 시 다음 문구를 유지해야 합니다: "IWL Original Model — © 2025 IdeaWorkLab. Used with permission."
+- 자세한 권리와 공지 사항은 리포지토리 루트의 `COPYRIGHT`, `AUTHORS`, `NOTICE` 파일을 참조하세요.
