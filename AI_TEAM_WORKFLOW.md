@@ -141,6 +141,13 @@ PM Claude의 검토와 추가 지시를 기다리겠습니다.
 - 루트의 `COPYRIGHT`, `AUTHORS`, `NOTICE` 파일을 최신 상태로 유지합니다.
 - 배포물(PDF 등)에는 출처 표기와 해시/타임스탬프 메타데이터를 포함합니다.
 
+### 🔟 프로젝트 관리 기준 (Issue #22)
+- GitHub Projects 보드 사용: 칸반 기반 진행 관리
+- 마일스톤 운영: Phase 1(A 시리즈, 8/20), Phase 2(B 시리즈, 8/27)
+- 라벨 정책: `proposal`, `needs-review`, `needs-thomas`, `theory`, `curriculum`
+- PR/Issue 작성 시 라벨 적용: 기본 `needs-review`; 최종 승인 필요 시 `needs-thomas` 추가
+- 필독 문서: `PROPOSAL_PROCESS.md`, `AI_TEAM_WORKFLOW.md`, `DAILY_LOG_YYYY-MM-DD.md`
+
 ---
 
 ## ✅ 프로세스 준수 체크리스트
