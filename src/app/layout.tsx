@@ -27,7 +27,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen relative bg-gradient-to-br from-indigo-50 via-white to-pink-50 dark:from-zinc-950 dark:via-black dark:to-zinc-900">
+          <div className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:16px_16px] dark:[background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)]" />
+          <div className="relative">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
