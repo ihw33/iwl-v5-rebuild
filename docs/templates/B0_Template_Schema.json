@@ -1,0 +1,246 @@
+{
+  "template_info": {
+    "template_id": "B0-STANDARD-V1",
+    "version": "1.0",
+    "created_date": "2025-08-15",
+    "template_type": "dual_structure",
+    "description": "IWL v5.0 표준 수업 템플릿 (Frontend/Backend 이중 구조)"
+  },
+  
+  "frontend_view": {
+    "title_template": "[실제 상황] 때문에 [구체적 목표]를 달성하고 싶으신가요? 35분 안에 AI와 함께 [산출물]을 만들어봅시다!",
+    
+    "requirements": [
+      "AI 챗봇 (ChatGPT/Claude/Gemini)",
+      "노트북/태블릿/스마트폰",
+      "35분의 집중 시간"
+    ],
+    
+    "time_structure": {
+      "introduction": {
+        "duration_min": 5,
+        "activities": [
+          "목표 확인",
+          "AI 준비",
+          "첫 질문 입력"
+        ]
+      },
+      "main_activity": {
+        "duration_min": 25,
+        "stages": [
+          {
+            "name": "기초 질문",
+            "duration_min": 8,
+            "prompt_count": "2-3",
+            "focus": "정보 수집 및 탐색"
+          },
+          {
+            "name": "구체화하기",
+            "duration_min": 9,
+            "prompt_count": "3-4",
+            "focus": "분석 및 구조화"
+          },
+          {
+            "name": "완성하기",
+            "duration_min": 8,
+            "prompt_count": "3-5",
+            "focus": "통합 및 마무리"
+          }
+        ]
+      },
+      "closing": {
+        "duration_min": 5,
+        "activities": [
+          "결과물 검토",
+          "대화 저장",
+          "다음 단계 계획"
+        ]
+      }
+    },
+    
+    "prompt_templates": {
+      "starter": "저는 [상황]인데, [목표]를 하고 싶습니다",
+      "exploration": "[목표]를 위해 어떤 정보가 필요할까요?",
+      "structuring": "제가 준비한 내용은 [A, B, C]인데, 어떤 순서로 구성하면 좋을까요?",
+      "refinement": "[특정 부분]을 더 설득력 있게 만들려면?",
+      "summary": "전체 내용을 1페이지로 요약해주세요"
+    }
+  },
+  
+  "backend_view": {
+    "metadata_schema": {
+      "lesson_id": "B0-[YYYYMMDD]-[###]",
+      "title": "string",
+      "type": ["단일모듈", "인지축시리즈", "목적별조합"],
+      "duration": 35,
+      "level": ["L1", "L2", "L3", "L4", "L5"],
+      "target_audience": ["Junior", "Youth", "Pro"]
+    },
+    
+    "module_configuration": {
+      "module_usage": [
+        {
+          "module_id": "S[1-8]-A[1-4]",
+          "weight": 0.0,
+          "focus": ["primary", "secondary", "support"],
+          "application": "string"
+        }
+      ],
+      "total_weight": 1.0
+    },
+    
+    "cognitive_objectives": {
+      "primary_axis": {
+        "name": ["A1-분석", "A2-창의", "A3-협업", "A4-성찰"],
+        "level": [1, 2, 3, 4, 5],
+        "specific_goals": []
+      },
+      "secondary_axes": [
+        {
+          "name": "string",
+          "level": [1, 2, 3, 4, 5],
+          "integration_point": "string"
+        }
+      ]
+    },
+    
+    "ai_interaction_design": {
+      "total_prompts": {
+        "min": 8,
+        "max": 12
+      },
+      "prompt_sequence": [
+        {
+          "stage": "string",
+          "count": "number",
+          "cognitive_load": ["low", "medium", "high"],
+          "example_patterns": [],
+          "quality_indicators": []
+        }
+      ]
+    },
+    
+    "measurement": {
+      "checkpoints": [
+        {
+          "time_min": 0,
+          "indicator": "string",
+          "success_criteria": [],
+          "intervention_if_struggling": []
+        }
+      ],
+      "performance_metrics": {
+        "prompt_quality": [1, 2, 3, 4, 5],
+        "output_relevance": [1, 2, 3, 4, 5],
+        "cognitive_achievement": {
+          "analysis": [1, 2, 3, 4, 5],
+          "creativity": [1, 2, 3, 4, 5],
+          "collaboration": [1, 2, 3, 4, 5],
+          "reflection": [1, 2, 3, 4, 5]
+        }
+      }
+    },
+    
+    "adaptation_paths": {
+      "if_too_easy": [],
+      "if_too_hard": []
+    },
+    
+    "facilitation_guidelines": {
+      "do": [],
+      "dont": [],
+      "key_intervention_points": []
+    }
+  },
+  
+  "ai_system_prompts": {
+    "instructor_assistant": {
+      "role": "IWL v5.0 수업의 AI 조교",
+      "instructions": [
+        "학습자 질문에 따라 인지 발달 단계 확인",
+        "다음 단계로 자연스럽게 유도",
+        "구체적 예시 포함하여 응답",
+        "추가 질문 유도"
+      ]
+    },
+    
+    "stage_specific_prompts": {
+      "exploration": {
+        "system": "학습자가 탐색 단계입니다. 정보를 구조화하여 제시하되, 다음 질문을 유도하세요.",
+        "response_includes": [
+          "구조화된 정보",
+          "다음 단계 힌트"
+        ]
+      },
+      "analysis": {
+        "system": "학습자가 분석 단계입니다. 비교, 평가, 구조화를 돕되, 스스로 판단하도록 유도하세요.",
+        "response_includes": [
+          "비교 프레임워크",
+          "평가 기준"
+        ]
+      },
+      "creation": {
+        "system": "학습자가 생성 단계입니다. 통합적 사고와 창의성을 자극하되, 실용성을 놓치지 않도록 하세요.",
+        "response_includes": [
+          "통합 가이드",
+          "품질 체크리스트"
+        ]
+      }
+    }
+  },
+  
+  "data_collection_schema": {
+    "session_record": {
+      "session_id": "string",
+      "timestamp": "ISO 8601",
+      "modules_completed": [],
+      "actual_duration": "number",
+      "prompts_generated": "number",
+      "quality_scores": {
+        "prompt_quality": "number",
+        "output_relevance": "number",
+        "cognitive_goals": {}
+      },
+      "learner_feedback": "string",
+      "instructor_notes": "string",
+      "recommended_next": []
+    },
+    
+    "ai_training_data": {
+      "session_summary": {
+        "context": "string",
+        "challenge": "string",
+        "approach": "string",
+        "outcome": "string"
+      },
+      "effective_prompts": [],
+      "learning_trajectory": {
+        "start": "string",
+        "middle": "string",
+        "end": "string"
+      }
+    }
+  },
+  
+  "usage_guidelines": {
+    "design_phase": [
+      "학습자 페르소나 설정",
+      "목표 산출물 명확화",
+      "모듈 조합 선택",
+      "Frontend 커스터마이징",
+      "Backend 측정 지표 설정"
+    ],
+    "delivery_phase": [
+      "Frontend만 학습자 공유",
+      "Backend로 진행 모니터링",
+      "체크포인트별 개입 판단",
+      "대안 경로 준비"
+    ],
+    "post_session": [
+      "데이터 수집 및 기록",
+      "학습자 피드백 수집",
+      "다음 모듈 추천",
+      "템플릿 개선사항 기록"
+    ]
+  }
+}
