@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { Button } from "./ui/button";
-import { ChevronDown, Eye, PenTool, Bot, Clock, Target, BookOpen, CheckCircle, Brain, Lightbulb } from "lucide-react";
+import { ChevronDown, PenTool, Bot, Clock, Target, BookOpen, CheckCircle, Brain } from "lucide-react";
 import { useState } from "react";
 import { lessonStages, STAGE_COLORS, STAGE_ICONS } from "../data/lessonContent";
 
@@ -60,7 +60,7 @@ export function LessonTabs() {
                 </h3>
                 <p className="text-lg text-muted-foreground">{stage.subtitle}</p>
                 <div className="mt-3 p-3 bg-white/80 rounded-md inline-block">
-                  <p className="text-sm italic">"{stage.learnerMindset}"</p>
+                  <p className="text-sm italic">&ldquo;{stage.learnerMindset}&rdquo;</p>
                 </div>
               </div>
 

@@ -1,0 +1,40 @@
+{
+  "project": {
+    "name": "IWL v5.0 Rebuild",
+    "type": "nextjs",
+    "framework": "Next.js 15.4.6",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "ui": "shadcn/ui"
+  },
+  "development": {
+    "port": 3001,
+    "turbopack": true,
+    "strictMode": true
+  },
+  "agents": {
+    "enabled": [
+      "nextjs-expert",
+      "react-optimizer",
+      "typescript-expert"
+    ],
+    "autoSelect": true
+  },
+  "commands": {
+    "shortcuts": {
+      "/d": "/dev",
+      "/t": "/test",
+      "/b": "/build",
+      "/c": "/clean"
+    }
+  },
+  "analytics": {
+    "enabled": false,
+    "port": 3333
+  },
+  "performance": {
+    "cacheStrategy": "aggressive",
+    "memoryLimit": "4GB",
+    "parallel": true
+  }
+}

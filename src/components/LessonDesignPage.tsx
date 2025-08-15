@@ -10,7 +10,7 @@ import { ThinkingStagesVisualization } from "./ThinkingStagesVisualization";
 import { CriteriaChartVisualization } from "./CriteriaChartVisualization";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { ArrowRight, BarChart3, Gamepad2, MessageSquare, Users, Grid3x3, Layers, ChartBar, GraduationCap } from "lucide-react";
+import { ArrowRight, BarChart3, Gamepad2, MessageSquare, Users, Layers, GraduationCap } from "lucide-react";
 import { Home } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";

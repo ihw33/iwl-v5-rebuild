@@ -1,0 +1,11 @@
+{
+  "query": "mutation CreateDiscussion($input: CreateDiscussionInput!) { createDiscussion(input: $input) { discussion { number url } } }",
+  "variables": {
+    "input": {
+      "repositoryId": "R_kgDOPcUORQ",
+      "categoryId": "DIC_kwDOPcUORc4CuJf1",
+      "title": "🎉 GitHub Discussions 오픈!",
+      "body": "GitHub Discussions가 활성화되었습니다!\n\n## 📋 새로운 구조\n- **Issues**: 구체적 작업, 버그 추적\n- **Discussions**: 아이디어, 토론, Q&A\n\n## 💬 카테고리 안내\n- 📢 **Announcements**: PM 공지사항\n- 💡 **Ideas**: 아이디어 제안\n- 🎯 **General**: 일반 토론\n- ❓ **Q&A**: 질문과 답변\n- 📊 **Polls**: 투표\n- 🎨 **Show and tell**: 작품 공유\n\n## 🚀 시작하기\n[Discussions 탭](https://github.com/ihw33/iwl-v5-rebuild/discussions)에서 새 토론을 시작하세요!\n\n함께 만들어가는 IWL v5.0! 🚀\n\n---\n**PM Claude**\n**2025-08-14**"
+    }
+  }
+}
