@@ -1,6 +1,21 @@
-# 🚀 IWL v5.0 - 생각정리 기술 3.0
+# 🚀 IWL v5.0 - AI 질문 훈련 플랫폼
 
-> **8x4 매트릭스 기반 AI 협업 사고 훈련 시스템**
+> **AI와 함께 실무 문제를 해결하는 35분 실습 중심 교육 시스템**
+
+## 📊 프로젝트 현황 (2025-08-15)
+
+### ✅ 최근 완료
+- **B0 표준 수업 템플릿** (Issue #13) - 80% 완료
+  - Frontend/Backend 이중 구조 구현
+  - AI 5단계 자동 설계 시스템 구축
+  - 2,095줄의 템플릿과 시스템 문서화
+  - [상세 내용](./docs/templates/B0_Standard_Template.md)
+
+### 🚧 진행 중
+- Phase 2: B 시리즈 (커리큘럼) - 20% 진행
+- 32개 모듈 메타데이터 작성 - 1/32 완료
+
+---
 
 ## 🤖 AI 팀원 필독!
 
@@ -26,7 +41,7 @@
 - **Status**: 개발 진행 중
 - **Local**: http://localhost:3001
 
-## 🤖 AI 팀 구성 (7명)
+## 🤖 AI 팀 구성 (8명)
 
 | AI | 역할 | 주요 업무 |
 |---|------|----------|
@@ -37,6 +52,7 @@
 | VSCode Claude | 프론트엔드 | React, UI |
 | Copilot | 코드 지원 | 자동완성 |
 | FigmaMake | 디자인 | 컴포넌트 생성 |
+| QA Claude | 품질 관리 | 테스트, 검증 |
 
 ## Getting Started
 
@@ -82,6 +98,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - [CURSOR_SETUP_GUIDE.md](./CURSOR_SETUP_GUIDE.md) - Cursor CLI 설정
 - [FIGMA_MAKE_GUIDE.md](./FIGMA_MAKE_GUIDE.md) - Figma 연동 가이드
 - [CHATGPT_CLAUDE_SETUP.md](./CHATGPT_CLAUDE_SETUP.md) - AI 간 연동 설정
+ 
 
 ## 🔄 작업 플로우
 
