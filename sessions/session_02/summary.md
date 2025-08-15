@@ -1,18 +1,17 @@
-# 세션 02 요약
-**날짜**: 2025-08-15
-**작업**: Issue #23과 B0 통합 검토
+## 세션 02 요약
 
-## ✅ 완료
-- Issue #23과 B0 관계 분석
-- 통합 방안 제시
-- 폴더 구조 생성 (modules/, ai_prompts/, training_data/)
-- 세션 관리 시스템 구축
+### 완료 작업
+1. B0 템플릿 시스템 구축 (80%)
+2. 설문 시스템 개선안 작성
+3. 대시보드 아이디어 기록
+4. 세션 관리 시스템 구축
 
-## 🔄 진행중
-- Issue #13 (B0): 80% 완료, 검토 대기
-- Issue #23: Thomas 승인 대기
+### 다음 세션
+- 3. 사고 성향 진단 (4축 간소화)
+- Issue #13 검증 계획
+- Issue #23 통합 방안
 
-## 📋 다음 작업
-1. B0 템플릿 최종 확정
-2. 모듈 메타데이터 31개 추가
-3. Issue #23 통합 실행
+### 주요 파일
+- /docs/templates/B0_Survey_System_Revised.md
+- /SESSION_MANAGEMENT.md
+- /sessions/current.md
