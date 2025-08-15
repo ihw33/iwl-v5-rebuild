@@ -37,6 +37,8 @@ working_rules:
   - "✅ 중간 점검 필수 - 각 단계 완료 시 확인"
   - "✅ 실용성 우선 - 이론보다 실습"
   - "✅ 35분 내 완성 가능한 수업"
+  - "📝 대화 내용은 즉시 파일로 저장"
+  - "🔄 작업 과정도 문서화 (휘발 방지)"
 
 # 🔧 프로젝트 환경
 project_info:
@@ -62,6 +64,21 @@ current_work:
     3: "복합 성향 처리 로직"
     4: "주니어용 별도 설계"
     5: "결과 제시 방법"
+
+# 🆕 진행 중인 작업 상세
+ongoing_work:
+  task: "사고 성향 진단 4축 설계"
+  discussion_file: "/docs/templates/Session02_Discussion_ThinkingStyle.md"
+  key_decisions:
+    - "4축 정의 확정됨 (A1~A4)"
+    - "A3, A4 축 질문 재설계 필요"
+    - "현재 질문이 A1, A2만 파악하는 문제"
+  
+  axis_definitions:
+    A1: "논리적/분석적 ↔ 직관적/창의적"
+    A2: "계획적/체계적 ↔ 유연적/즉흥적"
+    A3: "독립적/개인적 ↔ 협력적/소통적"
+    A4: "행동적/실행적 ↔ 성찰적/분석적"
 
 # 🎯 다음 작업 (우선순위)
 next_tasks:
