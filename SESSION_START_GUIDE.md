@@ -14,8 +14,8 @@ cat /Users/m4_macbook/iwl-v5-rebuild/PROJECT_STATUS.md
 📚 필수 문서 읽기:
 1. PROJECT_STATUS.md - 전체 현황
 2. /docs/sessions/Session03_S1_Philosophy.md - S1 철학
-3. /docs/8x4-matrix/modules/S1-A1/module_design.md - 완성된 모듈 예시
-4. /docs/8x4-matrix/modules/S1-A2/module_design.md - 수정 중인 모듈
+3. /docs/8x4-matrix/modules/S1-A1/S1-A1-module_design.md - 완성된 모듈 예시
+4. /docs/8x4-matrix/modules/S1-A2/S1-A2-module_design.md - 수정 중인 모듈
 
 🔧 GitHub 연동:
 gh auth status
@@ -64,13 +64,13 @@ cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/8x4_Matrix_Theory_Guide.md
 cat /Users/m4_macbook/iwl-v5-rebuild/docs/theory/IWL_Service_Structure_Guide.md
 
 # 완성된 모듈 예시
-cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A1/module_design.md
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A1/S1-A1-module_design.md
 ```
 
 ### 3. 현재 작업 확인
 ```bash
 # 진행 중인 모듈
-cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A2/module_design.md
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A2/S1-A2-module_design.md
 
 # S2 재정의
 cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/S2_Redefined_Design.md

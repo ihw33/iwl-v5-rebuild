@@ -86,8 +86,8 @@ A4: 자기인식-메타인지 (Self-awareness & Metacognition)
 /docs/sessions/session_04/S2_Redefined_Design.md  # S2 철학 (세션 04 작업)
 
 # 4. 완성된 모듈
-/docs/8x4-matrix/modules/S1-A1/module_design.md  # S1-A1 완성본
-/docs/8x4-matrix/modules/S1-A2/module_design.md  # S1-A2 초안
+/docs/8x4-matrix/modules/S1-A1/S1-A1-module_design.md  # S1-A1 완성본
+/docs/8x4-matrix/modules/S1-A2/S1-A2-module_design.md  # S1-A2 초안
 
 # 5. 통합 프로그램
 /docs/8x4-matrix/programs/S1_Integrated_Program.md  # S1 통합 프로그램
@@ -207,8 +207,8 @@ git status
 cd /Users/m4_macbook/iwl-v5-rebuild
 cat PROJECT_STATUS.md
 cat docs/sessions/Session03_S1_Philosophy.md
-cat docs/8x4-matrix/modules/S1-A1/module_design.md
-cat docs/8x4-matrix/modules/S1-A2/module_design.md
+cat docs/8x4-matrix/modules/S1-A1/S1-A1-module_design.md
+cat docs/8x4-matrix/modules/S1-A2/S1-A2-module_design.md
 ls -la docs/sessions/
 ```
 
