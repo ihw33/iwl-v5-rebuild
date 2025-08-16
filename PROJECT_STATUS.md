@@ -140,6 +140,12 @@ iwl-v5-rebuild/
 
 ## 🚀 새 세션 시작 가이드
 
+### ⭐ Thomas 승인 템플릿 사용!
+```bash
+# 완벽한 세션 시작 템플릿 (필수 사용!)
+cat /Users/m4_macbook/iwl-v5-rebuild/PERFECT_SESSION_START.md
+```
+
 ### 1단계: 프로젝트 상태 파악
 ```bash
 # 필수 확인
