@@ -1,126 +1,195 @@
-# 🚀 세션 시작 완전 가이드
+# 🚀 새 세션 시작 완벽 가이드
+**IWL v5.0 Rebuild Project**
 
-## 📋 세션 03 시작 메시지 (복사용)
+---
+
+## 📝 세션 시작 메시지 템플릿
 
 ```
-세션 시작
-프로젝트: IWL v5.0 Rebuild
-GitHub: ihw33/iwl-v5-rebuild  
-로컬: /Users/m4_macbook/iwl-v5-rebuild
-파일 확인: sessions/current.md, docs/GLOSSARY.md
+안녕! Thomas야. 세션 [번호]를 시작하려고 해.
+
+🔥 먼저 프로젝트 현황 확인:
+cat /Users/m4_macbook/iwl-v5-rebuild/PROJECT_STATUS.md
+
+📚 필수 문서 읽기:
+1. PROJECT_STATUS.md - 전체 현황
+2. /docs/sessions/Session03_S1_Philosophy.md - S1 철학
+3. /docs/8x4-matrix/modules/S1-A1/module_design.md - 완성된 모듈 예시
+4. /docs/8x4-matrix/modules/S1-A2/module_design.md - 수정 중인 모듈
+
+🔧 GitHub 연동:
+gh auth status
+gh repo view ihw33/iwl-v5-rebuild
+
+📌 환경:
+- 로컬: /Users/m4_macbook/iwl-v5-rebuild
+- GitHub: ihw33/iwl-v5-rebuild
+- 브랜치: main
+
+🎯 오늘 작업:
+[여기에 구체적인 작업 내용]
+
+준비되면 시작하자!
 ```
 
 ---
 
-## 🎯 PM Claude가 자동으로 할 일
+## 🔍 필수 확인 명령어 (복사용)
 
-### 1단계: 기본 정보 확인
+### 1. 프로젝트 상태 파악
 ```bash
-# 1. current.md 읽기 - 프로젝트 상태 파악
-# 2. GLOSSARY.md 확인 - 용어 이해
-# 3. GitHub Issues 확인 - 작업 현황
+# 전체 현황
+cat /Users/m4_macbook/iwl-v5-rebuild/PROJECT_STATUS.md
+
+# GitHub 연동
+gh auth status
+gh repo view ihw33/iwl-v5-rebuild
+gh issue list --state open
+
+# 파일 구조
+ls -la /Users/m4_macbook/iwl-v5-rebuild/
+ls -la /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/
+ls -la /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/
 ```
 
-### 2단계: 상황 보고
-```markdown
-## 📊 세션 03 시작
+### 2. 핵심 문서 읽기
+```bash
+# S1 철학 (가장 중요!)
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/sessions/Session03_S1_Philosophy.md
 
-### 프로젝트 이해
-✅ IWL = AI 질문 설계 교육 플랫폼
-✅ 8단계(S1~S8) × 4축(A1~A4) = 32개 모듈
-✅ B0 = 표준 수업 템플릿 (이중 구조)
+# 8×4 매트릭스 이론
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/8x4_Matrix_Theory_Guide.md
 
-### 현재 작업
-🎯 사고 성향 진단 4축 설계
-- 현재: A3, A4 축 정의 불명확
-- 필요: Thomas와 협의
+# 서비스 구조
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/theory/IWL_Service_Structure_Guide.md
 
-### 작업 규칙 확인
-❌ 혼자 완성 금지
-✅ 단계별 협의
-✅ 번호 순서 준수
-
-어떤 작업부터 시작하시겠습니까?
+# 완성된 모듈 예시
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A1/module_design.md
 ```
 
----
+### 3. 현재 작업 확인
+```bash
+# 진행 중인 모듈
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/S1-A2/module_design.md
 
-## ⚠️ 핵심 체크포인트
+# S2 재정의
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/S2_Redefined_Design.md
 
-### 프로젝트 이해 확인
-- [ ] IWL이 뭔지 안다
-- [ ] 8단계 × 4축 구조를 이해한다
-- [ ] B0 템플릿의 이중 구조를 안다
-- [ ] 작업 규칙을 숙지했다
-
-### 현재 상황 파악
-- [ ] 진행 중인 작업이 뭔지 안다
-- [ ] 블로킹 이슈가 뭔지 안다
-- [ ] Thomas와 협의할 사항을 안다
-
-### 파일 위치 확인
-- [ ] 프로젝트 경로를 안다
-- [ ] 작업 파일 위치를 안다
-- [ ] 참고 문서 위치를 안다
-
----
-
-## 📝 Thomas와의 첫 대화 예시
-
-```markdown
-Thomas님, 세션 03을 시작합니다.
-
-📊 현재 상황:
-- 작업: 사고 성향 진단 4축 설계
-- 문제: A3, A4 축 정의가 불명확
-- 진행: A1, A2만 완성된 상태
-
-🎯 오늘 목표:
-1. A3(협업), A4(성찰) 축 정의 명확화
-2. 각 축별 질문 3-5개 설계
-3. 복합 성향 처리 방법 결정
-
-먼저 A3, A4 축을 어떻게 정의할지 
-협의하고 싶습니다. 
-
-현재 초안:
-- A3: 독립적 ↔ 협력적
-- A4: 행동적 ↔ 성찰적
-
-이 정의가 적절한지, 수정이 필요한지
-의견 부탁드립니다.
+# 최근 세션 작업
+ls -la /Users/m4_macbook/iwl-v5-rebuild/docs/sessions/
 ```
 
 ---
 
-## 🔄 세션 중 필수 행동
+## 📊 현재 상황 요약 (2025-08-16)
 
-### DO ✅
-- 단계별로 Thomas 확인 받기
-- 번호 순서대로 진행하기
-- 중간 결과물 공유하기
-- 작업 규칙 준수하기
+### 🟢 완료
+- S1 철학적 재해석 ✅
+- S1-A1 모듈 완성 ✅
+- S1 통합 프로그램 ✅
+- S2 철학적 정의 ✅
 
-### DON'T ❌
-- 혼자서 끝까지 완성하기
-- 순서 무시하고 진행하기
-- 이론에 치중하기
-- 35분 넘는 수업 만들기
+### 🟡 진행 중
+- S1-A2 모듈 수정 🔄
+- S2-A1 모듈 설계 시작 🔄
 
----
-
-## 💾 세션 종료 시
-
-```
-세션 종료
-```
-
-입력하면 자동으로:
-1. current.md 업데이트
-2. 세션 요약 저장
-3. Git 커밋 & 푸시
-4. 다음 세션 가이드 생성
+### 🔴 대기
+- S1-A3, S1-A4 모듈
+- S2-A2, S2-A3, S2-A4 모듈
+- S3~S8 철학적 재해석
+- B0 템플릿 최종화
 
 ---
 
-**이 가이드를 보면 새 Claude도 완벽하게 시작할 수 있습니다!**
+## 💡 핵심 개념 리마인더
+
+### 철학
+```
+"가르치지 않는 가르침"
+"목표 없는 성장"
+"체화와 수련"
+```
+
+### S1-S2-S3 구분
+```
+S1: 점 - "있는 그대로" (순수한 감각)
+S2: 선 - "연결하되 판단 않음" (관계 발견)
+S3: 면 - "패턴과 규칙" (구조 인식)
+```
+
+### 레벨 시스템
+```
+L1 = 그림책 (많은 정보, 쉬운 인식)
+L3 = 중간
+L5 = 소설 (적은 정보, 깊은 상상)
+```
+
+### 4개 축 의미
+```
+A1: 정보처리깊이 - 얼마나 깊이?
+A2: 사고조작방식 - 어떻게?
+A3: 구체성-추상성 - 어느 수준?
+A4: 자기인식 - 나를 아는가?
+```
+
+---
+
+## 🎯 작업 우선순위
+
+### 1순위 (즉시)
+1. S1-A2 모듈 수정 완료
+2. S2-A1 모듈 설계
+
+### 2순위 (이번 주)
+3. S1-A3, S1-A4 완성
+4. S2 통합 프로그램 작성
+
+### 3순위 (다음 주)
+5. S3 철학적 재해석
+6. B0 템플릿 최종화
+
+---
+
+## ⚠️ 주의사항
+
+### 세션 시작 시
+1. **PROJECT_STATUS.md를 먼저 읽기**
+2. S1 철학 문서 필독
+3. GitHub 연동 확인
+4. 이전 세션 인수인계 확인
+
+### 작업 시
+1. 철학적 깊이 우선
+2. 파일 저장 위치 준수
+3. 형식 통일성 유지
+4. Thomas와 대화하며 진행
+
+### 세션 종료 시
+1. 인수인계 문서 작성
+2. PROJECT_STATUS.md 업데이트
+3. GitHub 커밋/푸시
+
+---
+
+## 📞 빠른 참조
+
+### 파일 위치
+- 프로젝트 현황: `/PROJECT_STATUS.md`
+- 8×4 매트릭스: `/docs/8x4-matrix/`
+- 모듈: `/docs/8x4-matrix/modules/S[1-8]-A[1-4]/`
+- 프로그램: `/docs/8x4-matrix/programs/`
+- 세션 기록 및 작업: `/docs/sessions/`
+- 세션별 작업 파일: `/docs/sessions/session_[번호]/`
+
+### GitHub
+- Repo: `ihw33/iwl-v5-rebuild`
+- Issue: 작업 관리용
+- 브랜치: `main`
+
+### 로컬
+- 경로: `/Users/m4_macbook/iwl-v5-rebuild`
+
+---
+
+**이 가이드를 세션 시작 시 참조하세요!**
+**PROJECT_STATUS.md와 함께 사용하세요!**

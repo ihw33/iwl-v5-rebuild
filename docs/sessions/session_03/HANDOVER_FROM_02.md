@@ -116,6 +116,33 @@ Stage: [1-8 중 선택]
 - 협의하지 않은 내용(예: 인원 20명)은 임의로 추가하지 말 것
 - Thomas와 하나하나 확인하며 진행
 
+### 10. 파일 저장 위치 가이드
+기획 작업 시 적절한 저장 위치:
+```
+iwl-v5-rebuild/
+├── docs/
+│   ├── theory/          ← 이론, 개념 설명
+│   ├── templates/       ← 템플릿, 설문, 페르소나
+│   ├── programs/        ← 프로그램 설계 (S1 통합 등)
+│   ├── sessions/        ← 세션별 작업 기록
+│   ├── planning/        ← 기획 문서 (필요시 생성)
+│   └── DECISIONS/       ← 의사결정 기록
+├── ai_prompts/          ← AI 프롬프트
+├── sessions/            ← 세션 관리
+├── meetings/            ← 미팅 기록
+└── modules/             ← 32개 모듈 (작성 예정)
+```
+
+**작업별 저장 위치**:
+- 새 프로그램 설계: `/docs/programs/`
+- 이론 설명: `/docs/theory/`
+- B시리즈 템플릿: `/docs/templates/`
+- 미팅 기록: `/meetings/`
+- 세션 작업: `/sessions/session_03/`
+- 결정사항: `/docs/DECISIONS/YYYY-MM-DD-주제.md`
+
+⚠️ 임의로 폴더를 만들지 말고 위 구조 따르기
+
 ### 시작 메시지 (복사용)
 ```
 세션 시작

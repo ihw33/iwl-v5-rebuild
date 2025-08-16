@@ -78,6 +78,49 @@ Claude: 세션 03을 마무리합니다.
 
 ---
 
+## 📁 파일 저장 위치 가이드
+
+### 프로젝트 폴더 구조와 용도
+```
+iwl-v5-rebuild/
+├── docs/
+│   ├── theory/          ← 이론, 개념 설명
+│   ├── templates/       ← 템플릿, 설문, 페르소나
+│   ├── programs/        ← 프로그램 설계 (S1 통합 등)
+│   ├── sessions/        ← 세션별 작업 기록
+│   ├── planning/        ← 기획 문서 (필요시 생성)
+│   └── DECISIONS/       ← 의사결정 기록
+├── ai_prompts/          ← AI 프롬프트
+├── sessions/            ← 세션 관리
+├── meetings/            ← 미팅 기록
+└── modules/             ← 32개 모듈 (작성 예정)
+```
+
+### 작업별 저장 위치
+| 작업 유형 | 저장 위치 | 파일명 예시 |
+|-----------|-----------|------------|
+| 새 프로그램 설계 | `/docs/programs/` | S2_Integrated_Program.md |
+| 이론 설명 | `/docs/theory/` | 8x4_Matrix_Theory_Guide.md |
+| B시리즈 템플릿 | `/docs/templates/` | B1_Lesson_Template.md |
+| 미팅 기록 | `/meetings/` | 2025-08-15_기획회의.md |
+| 세션 작업 | `/sessions/session_XX/` | session_03_work.md |
+| 결정사항 | `/docs/DECISIONS/` | 2025-08-15-주제.md |
+| AI 프롬프트 | `/ai_prompts/` | lesson_design_prompt.md |
+| 개별 모듈 | `/modules/` | S1-A1_module.md |
+
+### 파일명 규칙
+- 날짜 포함시: `YYYY-MM-DD-` 형식
+- 단계별: `S1_`, `S2_` 등
+- 템플릿: `B0_`, `B1_` 등
+- 명확하고 일관된 명명
+
+**⚠️ 중요**: 
+- 임의로 폴더를 만들지 말고 위 구조를 따를 것
+- 새 폴더가 필요하면 먼저 상의
+- 기존 파일과 일관성 유지
+
+---
+
 ## 💡 자동화 팁
 
 ### current.md 템플릿
