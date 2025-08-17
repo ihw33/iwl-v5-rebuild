@@ -54,6 +54,9 @@ ls -la /Users/m4_macbook/iwl-v5-rebuild/docs/8x4-matrix/modules/
 
 ### 2. 핵심 문서 읽기
 ```bash
+# 이론적 기반 (NEW! - 필독)
+cat /Users/m4_macbook/iwl-v5-rebuild/docs/theory/Thinking_Organization_Original_Theory.md
+
 # S1 철학 (가장 중요!)
 cat /Users/m4_macbook/iwl-v5-rebuild/docs/sessions/Session03_S1_Philosophy.md
 
