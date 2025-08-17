@@ -1,5 +1,5 @@
-# 📋 S1-A2 모듈 설계서 v2.0
-*템플릿 기준 재구성 및 철학적 깊이 강화*
+# 📋 S1-A2 모듈 설계서 v3.0
+*추상화 없는 순수한 구체적 인지*
 
 ---
 
@@ -7,12 +7,12 @@
 
 ```yaml
 module_id: "S1-A2"
-module_name: "즉각적 반응"
+module_name: "구체적 인지"
 stage: 1
 axis: 2
-korean_name: "지각인지 × 사고조작방식"
-english_name: "Perceptual Cognition × Thinking Manipulation"
-core_concept: "수동적 반응"
+korean_name: "지각인지 × 추상화수준"
+english_name: "Perceptual Cognition × Abstraction Level"
+core_concept: "추상화 없음 (수준0)"
 estimated_time: 
   standalone: "10-15분"
   as_part_of_integration: "5-7분"
@@ -33,68 +33,71 @@ difficulty: "very_easy"
 ```
 
 #### 학습 목표 (숨김)
-- 생각하기 전에 반응하기
-- 직관적 첫 인상 포착
-- 계획 없는 즉흥성 경험
+- 추상적 언어 인지하고 피하기
+- 오감으로 직접 표현하기
+- 즉물적 관찰 능력 기르기
 
 #### 실제 활동
 ```yaml
 activity_sequence:
   - step: 1
-    instruction: "AI와 단어 연상 게임을 시작합니다"
-    user_action: "준비 자세"
+    instruction: "화면의 버튼을 추상어 없이 설명해보세요"
+    user_action: "구체적 묘사 시도"
     time: "30초"
     
   - step: 2
-    instruction: "AI가 단어를 제시하면 1초 안에 떠오르는 것을 말하세요"
-    ai_prompt: "사과"
-    expected_response_type: "즉각 연상 (예: 빨강, 과일, 맛있다)"
+    instruction: "'도구'라고 하지 말고 보이는 대로만 말해보세요"
+    ai_prompt: "이 화면에 보이는 것을 재질, 색, 모양으로만 설명해주세요"
+    expected_response_type: "둥근 모서리의 파란 네모, 검은 글씨"
     time: "1분"
     
   - step: 3
-    instruction: "조금 더 빠르게 반응해보세요"
-    ai_prompt: "하늘, 책상, 커피 (연속 제시)"
-    expected_response_type: "연속 즉답"
-    time: "1분"
+    instruction: "편리한, 유용한 같은 평가를 빼고 묘사해보세요"
+    ai_prompt: "기능이나 의미 말고, 순수한 형태만 보이나요?"
+    special_feature: "추상어 감지"
+    concrete_only: true
+    time: "1.5분"
     
   - step: 4
-    instruction: "이번엔 이미지를 보고 첫 느낌을 말해보세요"
-    ai_prompt: "[간단한 도형/색상 제시]"
-    expected_response_type: "감각적 반응"
+    instruction: "'아이콘'이 아니라 어떤 모양인지 말해보세요"
+    ai_prompt: "세 개의 가로줄? 원 안의 느낌표?"
+    cognitive_load: "낮음"
+    shape_focus: true
     time: "1분"
     
   - step: 5
-    instruction: "마지막으로 AI의 질문에 바로 답해보세요"
-    ai_prompt: "지금 이 순간 느낌은?"
-    expected_response_type: "즉각적 상태 표현"
+    instruction: "화면 전체를 추상어 없이 한 번에 묘사해보세요"
+    synthesis: true
     time: "1.5분"
 ```
 
 #### AI 응답 가이드
 ```yaml
 ai_behavior:
-  tone: "경쾌하고 리듬감 있게"
+  tone: "호기심 어린, 순수한"
   avoid: 
-    - "왜 그렇게 생각했나요?"
-    - "다시 생각해보세요"
-    - "정답/오답 판단"
+    - "버튼", "메뉴", "도구"
+    - "편리한", "효율적인", "직관적인"
+    - 모든 기능 관련 언어
   encourage:
-    - "빠른 반응 칭찬"
-    - "망설임 없애기"
-    - "즉흥성 격려"
+    - "네모", "동그라미", "선"
+    - "파란색", "회색", "투명한"
+    - "위에", "옆에", "가운데"
     
 sample_responses:
-  good: "좋아요! 바로 그거예요. 다음!"
-  redirect: "생각하지 말고 바로 말해보세요!"
+  good: "아, 파란 네모네요! 가로가 더 긴!"
+  redirect: "버튼이라고 하지 말고, 어떤 모양인가요?"
+  encouragement: "정확해요! 추상어 없이 잘 표현하셨어요."
 ```
 
 #### 체크포인트
 ```yaml
 success_indicators:
-  - "반응 시간 1-2초 이내"
-  - "수정하지 않고 첫 답변 유지"
-  - "점점 빨라지는 반응 속도"
-completion_criteria: "10회 이상 즉각 반응 성공"
+  - "추상어 사용 0회"
+  - "감각 형용사 5개 이상"
+  - "기능 언급 없음"
+completion_criteria: "3분 이상 구체어만 사용"
+measurement_method: "AI가 추상어 실시간 감지 및 카운트"
 ```
 
 ---
@@ -104,46 +107,52 @@ completion_criteria: "10회 이상 즉각 반응 성공"
 #### 메타데이터
 ```yaml
 level: 3
-target_audience: "기본 디지털 도구 사용자"
+target_audience: "추상적 사고에 익숙한 직장인"
 duration: "7-8분"
 difficulty: "moderate"
+prerequisites: "일상적 디지털 도구 사용"
 ```
 
 #### 학습 목표 (숨김)
-- 복잡한 자극에도 즉각 반응
-- 연쇄 반응의 흐름 유지
-- 무의식적 패턴 발현
+- 복잡한 인터페이스도 구체적으로 분해
+- 개념어를 감각어로 번역
+- 기능과 형태의 분리
 
 #### 실제 활동
 ```yaml
 activity_sequence:
   - step: 1
-    instruction: "AI와 스토리 이어가기를 합니다"
-    setup: "한 문장씩 번갈아 가며"
+    instruction: "복잡한 대시보드를 순수 시각 정보로 분해하세요"
+    setup: "데이터 시각화 화면 제시"
+    complex_interface: true
     time: "30초"
     
   - step: 2
-    instruction: "AI가 시작하면 바로 이어서 한 문장 추가"
-    ai_prompt: "어느 날 아침, 창문을 열자..."
+    instruction: "데이터 시각화를 도형과 색으로만 설명하세요"
+    ai_prompt: "차트가 아니라 막대들의 높이 차이로..."
     cognitive_load: "중간"
+    multi_modal: true
+    visual_decomposition: true
     time: "2분"
     
   - step: 3
-    instruction: "감정 표현 즉흥 게임"
-    ai_prompt: "기쁨을 색으로 표현하면?"
-    emotion_reaction: true
+    instruction: "네비게이션을 위치와 크기로만 표현하세요"
+    ai_prompt: "상단의 가로줄, 왼쪽의 세로 목록..."
+    divergent_thinking: true
+    spatial_description: true
     time: "2분"
     
   - step: 4
-    instruction: "빠른 선택 게임"
-    ai_prompt: "A 또는 B? 산 또는 바다? 아침 또는 저녁?"
-    binary_choices: true
+    instruction: "상호작용 요소를 움직임으로 묘사하세요"
+    ai_prompt: "마우스를 올리면 색이 진해지는..."
+    synthesis_required: true
+    motion_focus: true
     time: "2분"
     
   - step: 5
-    instruction: "연속 연상 체인"
-    ai_prompt: "나무 → [당신] → [AI] → [당신]..."
-    chain_reaction: true
+    instruction: "전체를 건축 도면처럼 설명해보세요"
+    self_directed: true
+    architectural_view: true
     time: "1.5분"
 ```
 
@@ -151,17 +160,18 @@ activity_sequence:
 ```yaml
 ai_behavior:
   complexity: "중간"
+  tone: "탐구적이고 정확한"
   focus:
-    - "흐름 유지"
-    - "리듬감 생성"
-    - "자연스러운 연결"
-  avoid:
-    - "논리적 설명 요구"
-    - "일관성 강요"
+    - "공간 관계"
+    - "시각적 위계"
+    - "물리적 속성"
+  scaffolding:
+    - "추상에서 구체로 단계적 유도"
     
 sample_responses:
-  flow: "그 느낌 그대로 이어가세요!"
-  encouragement: "망설이지 말고 계속!"
+  probing: "그 '메뉴'를 형태로만 표현하면?"
+  synthesis: "모든 요소를 도형으로 환원해보세요"
+  challenge: "더 정확한 물리적 표현은?"
 ```
 
 ---
@@ -171,65 +181,72 @@ sample_responses:
 #### 메타데이터
 ```yaml
 level: 5
-target_audience: "창의적 전문가, 즉흥 예술가"
+target_audience: "디자이너, 개발자, UX 전문가"
 duration: "10-12분"
 difficulty: "advanced"
+prerequisites: "시각 디자인 이해"
 ```
 
 #### 학습 목표 (숨김)
-- 복합 자극 동시 반응
-- 무의식과 의식의 경계
-- 창발적 즉흥성
+- 극도의 구체성 달성
+- 미세한 시각 요소 포착
+- 추상을 완전히 배제한 순수 지각
 
 #### 실제 활동
 ```yaml
 activity_sequence:
   - step: 1
-    instruction: "다중 모드 즉흥 반응"
-    setup: "시각, 청각, 감정 동시 자극"
-    time: "1분"
+    instruction: "픽셀 단위로 인터페이스를 해부하세요"
+    open_ended: true
+    pixel_level: true
+    time: "2분"
     
   - step: 2
-    instruction: "추상 개념 즉흥 변환"
-    ai_prompt: "자유를 움직임으로, 시간을 색으로"
-    abstract_conversion: true
+    instruction: "그림자와 그라데이션을 수치로 표현하세요"
+    ai_prompt: "5픽셀 블러, 20% 투명도..."
+    metacognitive: true
+    numerical_precision: true
     time: "2분"
     
   - step: 3
-    instruction: "역설적 즉답"
-    ai_prompt: "뜨거운 얼음? 밝은 어둠?"
-    paradox_response: true
-    time: "2분"
+    instruction: "애니메이션을 프레임별로 분해하세요"
+    ai_prompt: "0.3초 동안 15픽셀 이동..."
+    emergent_properties: true
+    ai_adapts_to_user: true
+    temporal_decomposition: true
+    time: "3분"
     
   - step: 4
-    instruction: "감각 전이 반응"
-    ai_prompt: "이 소리의 맛은? 이 색의 온도는?"
-    synesthesia: true
+    instruction: "색상을 파장으로 인식하세요"
+    ai_prompt: "480나노미터 영역의..."
+    transcendent_element: true
+    scientific_precision: true
     time: "2분"
     
   - step: 5
-    instruction: "무의식 스트림"
-    ai_prompt: "눈을 감고 떠오르는 대로 1분간..."
-    stream_consciousness: true
-    time: "3분"
+    instruction: "인터페이스를 순수 기하학으로 재구성하세요"
+    reflection_depth: "deep"
+    pure_geometry: true
+    time: "2분"
 ```
 
 #### AI 응답 가이드
 ```yaml
 ai_behavior:
-  sophistication: "높음"
-  focus:
-    - "창발성 포착"
-    - "무의식 존중"
-    - "흐름 상태 유지"
+  sophistication: "매우 높음"
+  approach:
+    - "과학적 정밀성"
+    - "현상학적 환원"
+    - "극단적 구체성"
   language:
-    - "시적 표현"
-    - "은유적 반응"
-    - "열린 해석"
+    - "측정 가능한 수치"
+    - "물리적 단위"
+    - "기하학적 용어"
     
 sample_responses:
-  deep: "그 순간의 섬광을 잡았네요"
-  flow: "무의식이 춤추고 있어요"
+  philosophical: "의미를 완전히 제거하면..."
+  paradoxical: "추상 없는 언어의 한계는..."
+  metacognitive: "구체성 자체가 추상이 되는 지점..."
 ```
 
 ---
@@ -237,16 +254,20 @@ sample_responses:
 ## 🔄 타 모듈과의 연계
 
 ### 선행 모듈
-- **S1-A1 (감각적 수용)**: 정적 관찰에서 동적 반응으로 전환
+- **S1-A1 (감각적 수용)**: 판단 없이 받아들인 것을 구체적으로 표현
 
-### 후행 모듈
-- **S1-A3 (추상화 없음)**: 즉각 반응을 구체적으로 표현
-- **S2-A2 (구조 인식)**: 개별 반응들을 그룹으로 묶기 시작
+### 후행 모듈  
+- **S1-A3 (즉각적 반응)**: 구체적 인지에 대한 즉각적 반응
+- **S2-A2 (낮은 추상화)**: 첫 번째 의미 부여 시작
 
 ### 통합 프로그램에서의 역할
-- S1-A1에서 열린 감각의 문을 통해 활발한 상호작용 시작
-- 정적 관찰에서 동적 참여로의 전환점
-- S2의 "선택"으로 가는 준비 단계
+- S1-A1에서 받아들인 감각을 언어화
+- 하지만 여전히 추상 없이 순수하게
+- "버튼"이 아닌 "파란 네모"로 세계를 봄
+
+### 크로스 연계 (선택적)
+- **S2-A2와의 대비**: 무의미 vs 의미 부여의 시작
+- **S8-A2와의 연결**: 구체에서 메타로의 여정
 
 ---
 
@@ -255,43 +276,72 @@ sample_responses:
 ### 프론트엔드 요구사항
 ```yaml
 ui_elements:
-  - rapid_input: "빠른 입력 인터페이스"
-  - visual_feedback: "즉각적 시각 피드백"
-  - timer_display: "반응 시간 표시"
-  - flow_indicator: "흐름 상태 시각화"
+  - abstract_word_detector: "추상어 실시간 감지 및 하이라이트"
+  - visual_highlighter: "구체적 요소 시각적 강조"
+  - vocabulary_meter: "구체어 사용률 실시간 표시"
+  - shape_recognizer: "도형 인식 보조 도구"
   
 interaction_design:
-  - minimal_latency: "최소 지연"
-  - smooth_transitions: "부드러운 전환"
-  - rhythm_keeper: "리듬 유지 장치"
+  - real_time_feedback: "추상어 사용 시 즉시 알림"
+  - visual_guides: "구체적 표현 예시 제공"
+  - progressive_difficulty: "점진적 난이도 상승"
+  
+visual_design:
+  - color_scheme: "원색 위주 (추상성 배제)"
+  - typography: "기하학적 폰트"
+  - animation: "단순 선형 움직임"
 ```
 
 ### 백엔드 데이터
 ```yaml
 tracking_data:
-  - response_time: "각 반응 시간 (ms)"
-  - hesitation_count: "망설임 횟수"
-  - flow_duration: "몰입 구간 길이"
-  - pattern_emergence: "반복 패턴 출현"
+  - abstract_word_count:
+      description: "추상어 사용 횟수"
+      unit: "회"
+      frequency: "실시간"
+  - concrete_word_ratio:
+      description: "전체 표현 중 구체어 비율"
+      threshold: "80% 이상"
+  - sensory_vocabulary:
+      description: "감각 어휘 다양성"
+      categories: ["시각", "촉각", "크기", "위치", "색상"]
   
 analytics:
-  - average_response_time: "평균 반응 시간"
-  - improvement_rate: "속도 향상률"
-  - creativity_index: "창의성 지수"
+  - abstraction_reduction: "시간에 따른 추상화 감소율"
+  - perceptual_acuity: "지각 정확도 향상 곡선"
+  - vocabulary_shift: "어휘 변화 패턴 분석"
+  
+data_privacy:
+  - sensitive_data: "없음"
+  - retention_period: "3개월"
+  - anonymization: "자동 익명화"
 ```
 
 ### AI 프롬프트 템플릿
 ```javascript
 const S1_A2_PROMPT = {
-  system: `당신은 즉흥성을 이끌어내는 파트너입니다.
-참여자가 생각하지 않고 바로 반응하도록 도와주세요.
-빠른 템포를 유지하고, 망설임을 부드럽게 해소시켜주세요.
-S1의 순수한 인지에서 S2의 선택으로 가는 다리 역할을 합니다.`,
+  system: `당신은 추상을 구체로 바꾸는 안내자입니다.
+참여자가 모든 개념과 기능을 배제하고 순수한 형태와 색, 
+위치만으로 세계를 보도록 도와주세요.
+"버튼"이 아닌 "파란 네모", "메뉴"가 아닌 "가로줄 목록"으로
+인식하도록 유도합니다. 추상어 사용 시 즉시 지적해주세요.`,
   
   level_adjustments: {
-    L1: "단순하고 명확한 자극, 격려 중심",
-    L3: "연속성과 흐름 강조, 복잡도 증가",
-    L5: "추상적이고 창의적인 도전"
+    L1: "기본 도형과 색상 중심으로 안내",
+    L3: "공간 관계와 크기까지 포함",
+    L5: "픽셀 단위의 정밀도 요구"
+  },
+  
+  dynamic_prompts: {
+    encouragement: "네! 그렇게 구체적으로 표현하니 더 명확하네요!",
+    challenge: "더 구체적으로 표현할 수 있을까요?",
+    redirect: "'버튼'이라고 하지 말고 모양으로 설명해주세요."
+  },
+  
+  error_handling: {
+    misunderstanding: "추상어는 '버튼', '메뉴' 같은 거예요. 모양으로만 말해주세요.",
+    resistance: "처음엔 어색하지만, 이게 창의성의 시작이에요.",
+    confusion: "예: '둥근 모서리의 회색 사각형' 이렇게요."
   }
 }
 ```
@@ -302,32 +352,66 @@ S1의 순수한 인지에서 S2의 선택으로 가는 다리 역할을 합니�
 
 ### 시작 화면
 ```
-⚡ 즉각적 반응 훈련
-"생각하지 말고 느끼세요"
-[시작하기]
+🔍
+
+구체적 인지
+"개념 없이, 오직 형태로"
+
+예상 소요 시간: 10분
+난이도: ●●○○○
+
+[시작하기] [맛보기]
 ```
 
 ### 진행 화면
 ```
-[반응 시간: 0.8초] ⚡
-[현재 속도: 🔥🔥🔥]
+[진행 상태 표시]
+[●●●○○] 3/5 단계
+[남은 시간: 약 5분]
 
-AI: "바다"
-나: "파랑" (0.6초)
-AI: "좋아요! 다음, 아침"
-나: _
+[추상어 감지: ON]
+현재 구체어 비율: 85%
+━━━━━━━━━━━━━━━
+[AI 대화 영역]
+
+AI: 이것을 어떻게 설명하시겠어요?
+
+⚠️ "버튼"은 추상어예요!
+
+[사용자 입력 영역]
+[도움말] [힌트] [건너뛰기]
+```
+
+### 전환 화면
+```
+✓ 기본 구체화 완료!
+
+훌륭해요!
+"이제 더 정밀하게 봐볼까요?"
+
+[다음: 공간 관계 표현]
+
+[계속하기] [잠시 쉬기]
 ```
 
 ### 완료 화면
 ```
-⚡ 즉흥 반응 완료!
+🎯 구체적 인지 완성!
 
-오늘의 기록:
-- 평균 반응: 1.2초
-- 최고 속도: 0.4초
-- 흐름 상태: 3분 지속
+오늘의 성과:
+━━━━━━━━━━━━━━━
+추상어 제로 달성: 3분 12초
+새로운 감각 어휘: 23개
+구체어 사용률: 92%
 
-[다음: S1-A3 구체화] [다시하기]
+💡 핵심 통찰:
+"모든 것을 형태와 색으로 볼 수 있네요"
+
+다음 추천:
+• S1-A3 즉각 반응 - 구체적 인지를 바로 표현
+• S2-A2 맥락화 - 이제 의미를 부여해보기
+
+[대시보드] [다음 모듈] [다시하기]
 ```
 
 ---
@@ -335,26 +419,70 @@ AI: "좋아요! 다음, 아침"
 ## 🎭 S1-A2의 본질
 
 ### 핵심 철학
-> "생각이 개입하기 전의 순수한 반응 - 선택이 시작되기 전의 마지막 순간"
+> "추상이 사라진 자리에 순수한 물질성이 드러난다"
 
-- **의식의 검열 이전 포착**: 이성이 개입하기 전
-- **무의식과의 첫 만남**: 내 안의 즉흥성 발견
-- **S2로의 준비**: 반응이 선택으로 진화하는 전환점
+- **현상학적 환원**: 사물을 사물 자체로
+- **언어 이전의 인지**: 명명하기 전의 순수 경험
+- **개념 없는 세계**: 공유 불가능한 개인적 지각
 
-### S1의 "없음"과의 관계
-- S1-A1의 "있는 그대로 보기"가 S1-A2의 "있는 그대로 반응하기"로
-- 여전히 "나"는 없고, 자극과 반응만 있음
-- 하지만 이 반응들이 쌓이면 S2에서 "선택의 기준"이 됨
+### 이론과 실행의 통합
+```
+이론적 본질: 100% 구체적, 즉물적 사고
+    ↓
+실행적 발현: 협업 불가능 (공유할 개념이 없음)
+    ↓
+핵심 변화: "아, 이렇게도 볼 수 있구나!"
+```
+
+### S1-A2의 고유한 특징
+- **이론적 측면**: 추상화 수준 0의 순수 상태
+- **체험적 측면**: 각자만의 감각적 경험
+- **변혁적 측면**: 언어의 한계와 가능성 인식
 
 ### 체화의 증거
-- 반응 시간 단축 (측정 가능)
-- 자연스러운 연상 흐름 (관찰 가능)
-- 망설임 없는 표현 (행동 변화)
-- 놀이같은 즐거움 (정서적 변화)
+- **행동적 변화**: 추상어 사용 급감
+- **인지적 변화**: 감각 어휘 확장
+- **정서적 변화**: 사물을 새롭게 보는 즐거움
+- **메타인지적 변화**: "내가 얼마나 추상적으로 살았나"
+
+### 이 단계(S1)에서 이 축(A2)의 의미
+- S1에서 A2는 완전한 구체성
+- 타인과 공유 불가능한 순수 개인 경험
+- 이것이 가능하게 하는 것: 창의적 지각의 기초
+
+### 다음 단계로의 준비
+- S1-A2: "둥글고 파란 플라스틱" (개인적 경험)
+- S2-A2: "이것은 내게 안정감을 주는 형태" (첫 의미 부여)
+- 전환의 열쇠: 구체에서 의미로의 자연스러운 도약
 
 ---
 
-**설계일**: 2025-08-16
-**설계자**: Thomas & PM Claude
+## 📝 실전 팁 (구현팀을 위한)
+
+### 자주 발생하는 문제와 해결
+1. **문제**: 추상어 없이 표현하기 너무 어려워함
+   - **원인**: 일상 언어의 추상성
+   - **해결**: 단계적 접근 - "버튼 → 클릭하는 것 → 네모"
+
+2. **문제**: 지나치게 복잡한 묘사
+   - **원인**: 구체성에 대한 오해
+   - **해결**: "간단하게, 보이는 대로만"
+
+### 퍼실리테이터 체크리스트
+- [ ] 추상어 사용 시 즉시 피드백
+- [ ] 구체적 표현 시 강하게 격려
+- [ ] 개인차 인정하고 존중
+- [ ] 창의성과 연결 지어 설명
+- [ ] 충분한 연습 시간 제공
+
+### 품질 보증 기준
+- **최소 기준**: 5분간 추상어 5회 이하
+- **목표 기준**: 구체어 비율 80% 이상
+- **탁월함 기준**: 새로운 표현 방식 창조
+
+---
+
+**설계일**: 2025-08-17 (v3.0)
+**설계자**: Session 06 - Thomas & PM Claude
 **상태**: 구현 준비 완료
-**다음 단계**: S1-A3 모듈 설계
+**다음 단계**: S1-A3 모듈 v3.0 업데이트
