@@ -18,8 +18,14 @@ from enum import Enum
 from dataclasses import dataclass, field
 from datetime import datetime
 import json
+import logging
 from nodes.base.base_node import AbstractBaseNode
-from nodes.base.interfaces import NodeIO, PortSchema, ExecutionContext
+from nodes.base.interfaces import NodeIO, PortSchema, ExecutionContext, ValidationError
+from nodes.learning.config import LearningConfig, PersonaTypes, ActionTypes, ObservationTypes
+from nodes.learning.observation_analyzer import ObservationAnalyzer
+
+# 로깅 설정
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -96,16 +102,12 @@ class SessionState:
     
     def _detect_judgment(self, text: str) -> bool:
         """판단 언어 감지"""
-        judgment_words = [
-            "좋다", "나쁘다", "예쁘다", "못생겼다", "편하다", "불편하다",
-            "멋지다", "싫다", "마음에", "별로", "최고", "최악", "쓸모"
-        ]
-        return any(word in text for word in judgment_words)
+        return ObservationAnalyzer.detect_judgment(text)
     
     def _update_diversity(self):
         """관찰 다양성 업데이트"""
-        obs_types = set(obs.observation_type for obs in self.observations)
-        self.diversity_score = len(obs_types) / 5.0  # 5개 카테고리 기준
+        obs_types = [obs.observation_type for obs in self.observations]
+        self.diversity_score = ObservationAnalyzer.calculate_diversity_score(obs_types)
     
     def record_adjustment(self, adjustment: Dict[str, Any]):
         """DAG 조정 기록"""
@@ -210,10 +212,10 @@ class SimpleDagAdjuster:
     def __init__(self, session_state: SessionState):
         self.session = session_state
         self.adjustment_triggers = {
-            "low_performance": 0.5,  # 품질 점수 임계값
-            "high_performance": 0.9,
-            "repetitive_errors": 3,  # 같은 실수 반복 횟수
-            "slow_progress": 5  # 같은 단계 반복 횟수
+            "low_performance": LearningConfig.LOW_PERFORMANCE_THRESHOLD,
+            "high_performance": LearningConfig.HIGH_PERFORMANCE_THRESHOLD,
+            "repetitive_errors": LearningConfig.REPETITIVE_ERRORS_THRESHOLD,
+            "slow_progress": LearningConfig.SLOW_PROGRESS_THRESHOLD
         }
         
     def check_and_adjust(self, observation_result: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -291,19 +293,19 @@ class SimpleDagAdjuster:
             
         persona = self.session.user_profile.persona_type
         
-        if persona == "visual_learner" and self.session.diversity_score < 0.3:
+        if persona == PersonaTypes.VISUAL_LEARNER and self.session.diversity_score < LearningConfig.DIVERSITY_THRESHOLD_LOW:
             return {
                 "action": "add_visual_aids",
                 "reason": "visual_learner_needs_support",
                 "suggestion": "시각적 예시 추가"
             }
-        elif persona == "practice_oriented" and self.session.total_observations < 5:
+        elif persona == PersonaTypes.PRACTICE_ORIENTED and self.session.total_observations < 5:
             return {
                 "action": "add_practice_exercises",
                 "reason": "practice_oriented_needs_more",
                 "suggestion": "추가 연습 문제 제공"
             }
-        elif persona == "theoretical" and not any(obs.observation_type == "meta" for obs in self.session.observations):
+        elif persona == PersonaTypes.THEORETICAL and not any(obs.observation_type == ObservationTypes.META for obs in self.session.observations):
             return {
                 "action": "add_conceptual_explanation",
                 "reason": "theoretical_learner_depth",
@@ -511,25 +513,50 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
             ]
         }
     
+    def validate_inputs(self, payloads: Dict[str, Any]) -> None:
+        """입력 검증 강화"""
+        # action 필드는 필수
+        action = payloads.get("action")
+        if not action:
+            raise ValidationError("action field is required")
+            
+        if action not in [ActionTypes.START, ActionTypes.OBSERVE, ActionTypes.GET_PROMPT, ActionTypes.COMPLETE]:
+            raise ValidationError(f"Invalid action: {action}")
+        
+        # action별 필수 필드 검증
+        if action == ActionTypes.OBSERVE:
+            if not payloads.get("user_input"):
+                raise ValidationError("user_input required for observe action")
+            if not payloads.get("session_state"):
+                raise ValidationError("session_state required for observe action")
+        elif action in [ActionTypes.GET_PROMPT, ActionTypes.COMPLETE]:
+            if not payloads.get("session_state"):
+                raise ValidationError("session_state required for this action")
+    
     def _run(self, payloads: Dict[str, Any], ctx: ExecutionContext) -> Dict[str, Any]:
         """Phase 2-3: 실시간 인터랙티브 실행"""
-        action = payloads.get("action", "start")
+        action = payloads.get("action", ActionTypes.START)
         
-        if action == "start":
+        logger.info(f"Processing action: {action} for session: {ctx.session_id}")
+        
+        if action == ActionTypes.START:
             return self._handle_start(payloads, ctx)
-        elif action == "observe":
+        elif action == ActionTypes.OBSERVE:
             return self._handle_observation(payloads, ctx)
-        elif action == "get_prompt":
+        elif action == ActionTypes.GET_PROMPT:
             return self._handle_get_prompt(payloads, ctx)
-        elif action == "complete":
+        elif action == ActionTypes.COMPLETE:
             return self._handle_complete(payloads, ctx)
         else:
-            return {"error": f"Unknown action: {action}"}
+            logger.error(f"Unknown action: {action}")
+            raise ValidationError(f"Unknown action: {action}")
     
     def _handle_start(self, payloads: Dict[str, Any], ctx: ExecutionContext) -> Dict[str, Any]:
         """세션 시작"""
-        user_level = payloads.get("user_level", "L1")
+        user_level = payloads.get("user_level", LearningConfig.DEFAULT_LEVEL)
         user_profile_data = payloads.get("user_profile")
+        
+        logger.info(f"Starting session for user: {ctx.user_id}, level: {user_level}")
         
         # 새 세션 생성
         session = SessionState(
@@ -542,11 +569,12 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
         if user_profile_data:
             session.user_profile = UserProfile(
                 user_id=user_profile_data.get("user_id", ctx.user_id),
-                persona_type=user_profile_data.get("persona_type", "general"),
-                learning_style=user_profile_data.get("learning_style", "balanced"),
-                selected_curriculum=user_profile_data.get("selected_curriculum", "default"),
+                persona_type=user_profile_data.get("persona_type", LearningConfig.DEFAULT_PERSONA),
+                learning_style=user_profile_data.get("learning_style", LearningConfig.DEFAULT_LEARNING_STYLE),
+                selected_curriculum=user_profile_data.get("selected_curriculum", LearningConfig.DEFAULT_CURRICULUM),
                 profile_vector=user_profile_data.get("profile_vector", [])
             )
+            logger.debug(f"User profile loaded: {session.user_profile.persona_type}")
             session.selected_curriculum_id = session.user_profile.selected_curriculum
         
         # DAG 조정기 초기화
@@ -599,6 +627,8 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
                 "observation_type": entry.observation_type,
                 "has_judgment": entry.has_judgment
             })
+            if dag_adjustment:
+                logger.warning(f"DAG adjustment triggered: {dag_adjustment['action']} - {dag_adjustment['reason']}")
         
         # 다음 프롬프트 결정
         current_prompts = self.prompts[session.current_level]
@@ -696,15 +726,21 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
         session = SessionState(
             session_id=session_data.get("session_id", "unknown"),
             user_id=session_data.get("user_id", "anonymous"),
-            current_level=session_data.get("current_level", "L1"),
+            current_level=session_data.get("current_level", LearningConfig.DEFAULT_LEVEL),
             current_step=session_data.get("current_step", 1)
         )
         
         # 기존 관찰 복원
         if "observations" in session_data:
             for obs_data in session_data["observations"]:
+                try:
+                    timestamp = datetime.fromisoformat(obs_data["timestamp"])
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"Invalid timestamp format: {e}, using current time")
+                    timestamp = datetime.now()
+                
                 obs = ObservationEntry(
-                    timestamp=datetime.fromisoformat(obs_data["timestamp"]),
+                    timestamp=timestamp,
                     observation=obs_data["observation"],
                     observation_type=obs_data.get("type", "unknown"),
                     has_judgment=obs_data.get("has_judgment", False),
@@ -747,20 +783,7 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
     
     def _classify_observation(self, text: str) -> str:
         """관찰 분류"""
-        categories = {
-            "color": ["색", "빨강", "파랑", "초록", "노랑", "검정", "흰", "회색"],
-            "shape": ["네모", "동그라미", "삼각", "직선", "곡선", "모양"],
-            "size": ["크", "작", "넓", "좁", "길", "짧", "두껍", "얇"],
-            "position": ["위", "아래", "왼쪽", "오른쪽", "가운데", "모서리", "상단", "하단"],
-            "texture": ["매끄", "거칠", "반짝", "무광", "투명", "불투명"],
-            "meta": ["보이", "관찰", "느껴", "인식", "시선", "없는", "부재"]
-        }
-        
-        for category, keywords in categories.items():
-            if any(keyword in text for keyword in keywords):
-                return category
-        
-        return "general"
+        return ObservationAnalyzer.classify_observation(text)
     
     def _generate_feedback(self, entry: ObservationEntry, session: SessionState) -> str:
         """즉각적 피드백 생성"""
@@ -791,41 +814,23 @@ class S1_A1_InteractiveNode(AbstractBaseNode):
     
     def _calculate_observation_quality(self, entry: ObservationEntry, session: SessionState) -> float:
         """개별 관찰 품질 점수"""
-        score = 0.5  # 기본 점수
-        
-        # 판단 언어 없으면 가점
-        if not entry.has_judgment:
-            score += 0.2
-        
-        # 새로운 카테고리 관찰 시 가점
+        # 이전 카테고리 확인
         previous_types = set(obs.observation_type for obs in session.observations[:-1])
-        if entry.observation_type not in previous_types:
-            score += 0.15
+        is_new_category = entry.observation_type not in previous_types
         
-        # 레벨별 특별 가점
-        if session.current_level == "L5":
-            if entry.observation_type == "meta":
-                score += 0.1
-            if "없" in entry.observation or "부재" in entry.observation:
-                score += 0.05
-        elif session.current_level == "L3":
-            if entry.observation_type in ["position", "texture"]:
-                score += 0.1
-        
-        # 관찰 길이와 구체성
-        if len(entry.observation) > 20:
-            score += 0.05
-        
-        return min(1.0, score)
+        # ObservationAnalyzer 사용
+        return ObservationAnalyzer.calculate_quality_score(
+            observation_text=entry.observation,
+            has_judgment=entry.has_judgment,
+            is_new_category=is_new_category,
+            observation_length=len(entry.observation),
+            level=session.current_level
+        )
     
     def _should_advance_step(self, session: SessionState) -> bool:
         """단계 진행 조건 확인"""
         # 레벨별 최소 관찰 수
-        min_observations = {
-            "L1": 3,
-            "L3": 5,
-            "L5": 4
-        }
+        min_observations = LearningConfig.MIN_OBSERVATIONS
         
         step_observations = [obs for obs in session.observations 
                             if obs.timestamp > session.started_at]  # 현재 스텝의 관찰만
