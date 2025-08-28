@@ -45,4 +45,3 @@ class AbstractBaseNode(BaseNode):
     def health(self) -> HealthStatus:
         return HealthStatus(status="ok")
 
-

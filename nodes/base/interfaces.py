@@ -127,5 +127,3 @@ class DAGNode(BaseNode, Protocol):
 
     def scheduling_hints(self) -> Dict[str, Any]:
         ...
-
-
