@@ -1,0 +1,262 @@
+# S2-A1 모듈 메타데이터
+module_id: "S2-A1"
+module_name: "목적 명확화 × 분석"
+stage: 
+  number: 2
+  name: "목적 명확화"
+  focus: "해결하고자 하는 문제나 달성하고자 하는 목표 정의"
+cognitive_axis:
+  number: 1
+  name: "A1-분석"
+  focus: "논리적 사고와 구조화 능력"
+
+difficulty_range:
+  min: L1
+  max: L5
+  sweet_spot: L3
+
+typical_duration:
+  standalone: 35
+  as_part: 10
+
+description: |
+  학습자가 자신의 목적을 명확히 정의하고, 
+  이를 달성하기 위한 요구사항을 분석하는 방법을 
+  AI와의 대화를 통해 체계적으로 학습합니다.
+
+# 학습 목표
+learning_objectives:
+  primary:
+    - "막연한 목적을 구체적이고 측정 가능한 목표로 전환"
+    - "목표 달성을 위한 핵심 요소 도출 및 우선순위 설정"
+  
+  cognitive_skills:
+    - analysis: "목적-수단 분석, 요구사항 분해"
+    - creativity: "다양한 관점에서 목적 재정의"
+    - collaboration: "이해관계자 요구 통합"
+    - reflection: "목적의 타당성 검토"
+  
+  ai_skills:
+    - "목적 구체화를 위한 단계적 질문 기법"
+    - "SMART 목표 설정을 위한 프롬프트 작성"
+    - "제약조건과 요구사항 명확화 대화법"
+
+expected_outputs:
+  - type: "목표 정의서"
+    description: "SMART 기준에 맞는 1페이지 목표 문서"
+    quality_criteria:
+      - "구체성(Specific): 명확한 대상과 범위"
+      - "측정가능성(Measurable): 정량적 지표 포함"
+      - "달성가능성(Achievable): 현실적 제약 고려"
+      - "관련성(Relevant): 상위 목적과 연계"
+      - "시한성(Time-bound): 명확한 일정"
+
+# 선수 조건 및 연계
+prerequisites:
+  required:
+    - module_id: "S1-A1"
+      reason: "기본적인 상황 인식과 문제 파악 능력 필요"
+  
+  recommended:
+    - module_id: "S1-A3"
+      reason: "이해관계자 파악이 목적 설정에 도움"
+  
+  knowledge:
+    - "기본적인 문서 작성 능력"
+    - "자신의 업무/학습 환경에 대한 이해"
+
+next_modules:
+  natural_progression:
+    - module_id: "S3-A1"
+      reason: "명확해진 목적을 바탕으로 정보 수집 단계로 진행"
+  
+  complementary:
+    - module_id: "S2-A3"
+      reason: "목적 설정 시 이해관계자 관점 통합"
+  
+  advanced:
+    - module_id: "S4-A1"
+      reason: "목적을 전략적 사고로 발전"
+
+# AI 프롬프트 설계
+prompt_patterns:
+  beginner_level:
+    - pattern: "제가 [상황]인데, [목표]를 하고 싶습니다. 어떻게 시작하면 좋을까요?"
+      example: "제가 마케팅팀 신입인데, 효과적인 소셜미디어 전략을 만들고 싶습니다."
+      cognitive_focus: "기초적인 목적 인식"
+  
+  intermediate_level:
+    - pattern: "[목표]를 달성하기 위해 필요한 핵심 요소들을 분석해주세요"
+      example: "신제품 런칭을 성공시키기 위해 필요한 핵심 요소들을 분석해주세요"
+      cognitive_focus: "요소 분해와 관계 파악"
+  
+  advanced_level:
+    - pattern: "[목표]의 성공 지표를 정의하고, 각 지표별 달성 전략을 제시해주세요"
+      example: "디지털 전환 프로젝트의 성공 지표를 정의하고, 각 지표별 달성 전략을 제시해주세요"
+      cognitive_focus: "측정 가능한 목표 설계"
+
+prompt_progression:
+  step1:
+    purpose: "현재 상황과 니즈 파악"
+    prompt_type: "개방형 질문"
+    expected_response: "상황 설명과 초기 목표 진술"
+  
+  step2:
+    purpose: "목적 구체화와 범위 설정"
+    prompt_type: "구조화 요청"
+    expected_response: "세분화된 목표와 제약사항"
+  
+  step3:
+    purpose: "측정 지표와 성공 기준 정의"
+    prompt_type: "정량화 요청"
+    expected_response: "SMART 기준에 맞는 목표 명세"
+
+# AI 시스템 프롬프트
+ai_system_prompts:
+  module_context: |
+    당신은 목적 명확화를 돕는 AI 조교입니다.
+    학습자가 막연한 아이디어를 구체적이고 실행 가능한 목표로 
+    전환할 수 있도록 단계적으로 안내해주세요.
+    
+    핵심 원칙:
+    - 추상적 표현을 구체적으로 바꾸도록 유도
+    - 측정 가능한 지표를 포함하도록 안내
+    - 현실적 제약사항을 고려하도록 질문
+  
+  response_guidelines:
+    - "학습자의 초기 목표를 받아들이되, 더 명확하게 만들 수 있는 질문 제시"
+    - "Why, What, How, When, Who의 관점에서 체계적으로 탐색"
+    - "구체적인 예시와 템플릿을 제공하여 사고 확장 지원"
+  
+  stage_specific:
+    exploration: "현재 상황과 동기를 파악하는 개방형 질문으로 시작"
+    development: "목표를 구성 요소로 분해하고 우선순위 설정 지원"
+    integration: "SMART 기준에 맞춰 통합된 목표 문서 작성 안내"
+
+# 평가 및 체크포인트
+checkpoints:
+  - time: "5min"
+    indicator: "초기 목표 진술 완성"
+    success_criteria: "학습자가 달성하고자 하는 바를 1-2문장으로 표현"
+    intervention_needed_if: "목표가 너무 추상적이거나 광범위함"
+  
+  - time: "15min"
+    indicator: "목표 구체화 진행도"
+    success_criteria: "최소 3개 이상의 하위 목표 또는 구성 요소 도출"
+    intervention_needed_if: "여전히 추상적 수준에 머물러 있음"
+  
+  - time: "25min"
+    indicator: "SMART 목표 초안"
+    success_criteria: "5가지 SMART 기준 중 최소 3개 충족"
+    intervention_needed_if: "측정 지표나 일정이 부재"
+
+assessment_rubric:
+  ai_prompt_quality:
+    L1: "단순 정보 요청 (예: 이게 뭔가요?)"
+    L2: "기본적 구조화 요청 (예: 목록으로 정리해주세요)"
+    L3: "분석적 요청 (예: 장단점을 비교해주세요)"
+    L4: "통합적 사고 요청 (예: 여러 관점을 종합해주세요)"
+    L5: "메타인지적 요청 (예: 제 접근법의 문제점을 분석해주세요)"
+  
+  goal_clarity:
+    L1: "추상적이고 측정 불가능한 목표"
+    L2: "부분적으로 구체화된 목표"
+    L3: "SMART 기준 3개 충족"
+    L4: "SMART 기준 모두 충족"
+    L5: "SMART + 리스크 분석 포함"
+  
+  analytical_depth:
+    L1: "표면적 분석"
+    L2: "단일 관점 분석"
+    L3: "다중 관점 고려"
+    L4: "관점 간 관계 분석"
+    L5: "시스템적 사고와 영향 분석"
+
+# 교수 전략
+difficulty_adjustment:
+  make_easier:
+    - "SMART 템플릿 직접 제공"
+    - "구체적인 질문 목록 제시"
+    - "유사 사례 3개 이상 제공"
+  
+  make_harder:
+    - "복수 이해관계자 시나리오 추가"
+    - "상충하는 목표 간 우선순위 결정 요구"
+    - "제약 조건 강화 (예산, 시간, 인력)"
+  
+  personalization:
+    - "학습자의 실제 업무/학습 상황 활용"
+    - "개인의 강점을 활용한 목표 설정"
+    - "과거 성공/실패 경험 반영"
+
+common_challenges:
+  - challenge: "너무 광범위한 목표 설정"
+    signs: "모든 것을 다 하려고 함, 우선순위 불명확"
+    intervention: "범위를 좁히는 질문 제시 (예: 3개월 내 가장 중요한 한 가지는?)"
+    prevention: "처음부터 시간/자원 제약 명시"
+  
+  - challenge: "측정 지표 설정의 어려움"
+    signs: "정성적 표현만 사용, 숫자 회피"
+    intervention: "측정 가능한 행동 지표 예시 제공"
+    prevention: "성공의 모습을 구체적으로 그려보도록 유도"
+
+# 조합 가이드
+effective_combinations:
+  - modules: ["S1-A1", "S2-A1", "S3-A1"]
+    purpose: "완전한 문제 정의부터 정보 수집까지"
+    total_duration: 35
+    target_audience: "초급자"
+    expected_outcome: "실행 가능한 프로젝트 계획서"
+  
+  - modules: ["S2-A1", "S2-A3", "S4-A1"]
+    purpose: "전략적 목표 설정"
+    total_duration: 35
+    target_audience: "중급자"
+    expected_outcome: "이해관계자 합의된 전략 목표"
+
+avoid_combinations:
+  - modules: ["S2-A1", "S2-A2"]
+    reason: "목적 명확화 단계에서 창의성 강조는 혼란 야기"
+    alternative: "S2-A1 → S3-A1 → S3-A2 순서 권장"
+
+# 데이터 수집
+data_collection_points:
+  quantitative:
+    - metric: "prompt_count"
+      description: "생성한 프롬프트 수"
+      expected_range: [5, 12]
+    
+    - metric: "goal_refinement_iterations"
+      description: "목표 수정 횟수"
+      expected_range: [2, 5]
+    
+    - metric: "smart_criteria_met"
+      description: "충족한 SMART 기준 수"
+      expected_range: [3, 5]
+  
+  qualitative:
+    - aspect: "goal_evolution"
+      description: "목표의 구체화 과정"
+      indicators: ["초기 진술", "중간 수정", "최종 형태"]
+    
+    - aspect: "analytical_thinking"
+      description: "분석적 사고의 발전"
+      indicators: ["요소 분해", "관계 파악", "우선순위화"]
+
+# 실제 수업 예시
+example_scenarios:
+  - scenario: "스타트업 마케팅 전략"
+    initial_goal: "우리 스타트업을 유명하게 만들고 싶어요"
+    refined_goal: "3개월 내 타겟 고객층(25-35세 직장인) 인지도 30% 달성"
+    key_prompts:
+      - "우리 제품을 가장 필요로 할 사람들의 특징을 분석해주세요"
+      - "인지도를 측정할 수 있는 구체적인 지표를 제안해주세요"
+      - "월 500만원 예산으로 가능한 마케팅 채널을 우선순위와 함께 제시해주세요"
+  
+  - scenario: "개인 역량 개발"
+    initial_goal: "데이터 분석 능력을 키우고 싶어요"
+    refined_goal: "6개월 내 Python 기반 데이터 분석으로 월 1회 인사이트 리포트 작성"
+    key_prompts:
+      - "현재 제 수준에서 6개월 내 달성 가능한 구체적 목표는?"
+      - "데이터 분석 역량을 단계별로 나누면?"
+      - "각 단계별 학습 마일스톤과 평가 방법을 제시해주세요"

@@ -1,0 +1,87 @@
+name: 🧩 Enforce Gemini Report Comment Format
+
+on:
+  issue_comment:
+    types: [created, edited]
+  pull_request_review_comment:
+    types: [created, edited]
+
+jobs:
+  check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate comment format
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const payload = context.payload;
+            const actor = payload.sender?.login || '';
+            const body = payload.comment?.body || '';
+            const isBot = !!payload.sender?.type && payload.sender.type.toLowerCase() === 'bot';
+
+            // Only act on comments that include the Gemini report tag
+            const hasTag = /\[\s*Gemini\s*보고\s*\]/i.test(body);
+            if (!hasTag || isBot) {
+              core.info('No [Gemini 보고] tag found or comment by bot; skipping.');
+              return;
+            }
+
+            // Require author field like: "작성자: 홍길동" or "Author: Name"
+            const hasAuthor = /(작성자\s*:\s*\S.+)|(Author\s*:\s*\S.+)/.test(body);
+            if (hasAuthor) {
+              core.info('Comment contains author; OK.');
+              return;
+            }
+
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+            const warning = [
+              '⚠️ [Gemini 보고] 형식 오류: `작성자`가 누락되었습니다.',
+              '',
+              '다음 형식을 첫 줄에 포함해주세요:',
+              '```',
+              '[Gemini 보고] 작성자: 홍길동',
+              '```',
+              '',
+              '예시:',
+              '```',
+              '[Gemini 보고] 작성자: 홍길동',
+              '- 핵심 요약: ...',
+              '- 진행 상황: ...',
+              '- 다음 액션: ...',
+              '```'
+            ].join('\n');
+
+            if (payload.issue) {
+              // Regular issue/PR comment
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: payload.issue.number,
+                body: warning,
+              });
+            } else if (payload.comment && payload.comment.id && payload.pull_request) {
+              // Review comment with PR object available
+              await github.rest.pulls.createReplyForReviewComment({
+                owner,
+                repo,
+                pull_number: payload.pull_request.number,
+                comment_id: payload.comment.id,
+                body: warning,
+              });
+            } else if (payload.comment && payload.comment.pull_request_url) {
+              // Fallback: fetch PR number from URL
+              const prUrl = payload.comment.pull_request_url;
+              const prNumber = Number(prUrl.split('/').pop());
+              if (!Number.isNaN(prNumber)) {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: prNumber,
+                  body: warning,
+                });
+              }
+            }
+
+            core.setOutput('status', 'warned');
