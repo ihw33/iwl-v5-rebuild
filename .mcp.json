@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem"
+      ],
+      "env": {
+        "FILESYSTEM_ROOT": "/Users/m4_macbook/iwl-v5-rebuild",
+        "FILESYSTEM_WATCH": "true"
+      }
+    }
+  },
+  "config": {
+    "autoConnect": false,
+    "retryOnError": true,
+    "timeout": 30000
+  }
+}

@@ -131,23 +131,6 @@ PM Claude의 검토와 추가 지시를 기다리겠습니다.
 - 다음 날 계획 공유
 - 블로커나 도움 필요 사항 명시
 
-### 8️⃣ 결정 기록(DECISIONS) 운영
-- 승인된 주요 결정은 `docs/DECISIONS/` 폴더에 문서화하여 단일 출처로 관리합니다.
-- 이슈/PR에는 해당 결정 문서를 참조합니다. 예: `References: docs/DECISIONS/2025-08-13-a1-terminology.md, #9`
-- 결정 문서에는: 결정 일자, 관련 이슈, 승인자(Thomas), 범위, 최종 내용, 적용 범위를 명시합니다.
-
-### 9️⃣ IP/표준화 준수 체크
-- 모든 A1/A2/A3 문서 하단에 "원저작 고지" 섹션을 유지합니다.
-- 루트의 `COPYRIGHT`, `AUTHORS`, `NOTICE` 파일을 최신 상태로 유지합니다.
-- 배포물(PDF 등)에는 출처 표기와 해시/타임스탬프 메타데이터를 포함합니다.
-
-### 🔟 프로젝트 관리 기준 (Issue #22)
-- GitHub Projects 보드 사용: 칸반 기반 진행 관리
-- 마일스톤 운영: Phase 1(A 시리즈, 8/20), Phase 2(B 시리즈, 8/27)
-- 라벨 정책: `proposal`, `needs-review`, `needs-thomas`, `theory`, `curriculum`
-- PR/Issue 작성 시 라벨 적용: 기본 `needs-review`; 최종 승인 필요 시 `needs-thomas` 추가
-- 필독 문서: `PROPOSAL_PROCESS.md`, `AI_TEAM_WORKFLOW.md`, `DAILY_LOG_YYYY-MM-DD.md`
-
 ---
 
 ## ✅ 프로세스 준수 체크리스트
@@ -158,7 +141,6 @@ PM Claude의 검토와 추가 지시를 기다리겠습니다.
 - [ ] PM Claude의 피드백을 기다리고 있는가?
 - [ ] 피드백에 따라 수정했는가?
 - [ ] 최종 승인을 받았는가?
-- [ ] 승인 결정은 `docs/DECISIONS/`에 기록했는가?
 
 ---
 

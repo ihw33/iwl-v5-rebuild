@@ -1,0 +1,31 @@
+name: IWL Orchestra Integration
+on:
+  issues:
+    types: [opened]
+    
+jobs:
+  trigger-orchestra:
+    if: contains(github.event.issue.title, '[AI]')
+    runs-on: ubuntu-latest
+    
+    steps:
+      # ai-orchestra 코드 가져오기
+      - name: Checkout Orchestra
+        uses: actions/checkout@v3
+        with:
+          repository: ihw33/ai-orchestra-v02
+          path: orchestra
+          
+      # IWL 프로젝트 체크아웃
+      - name: Checkout IWL
+        uses: actions/checkout@v3
+        with:
+          path: iwl
+          
+      # Orchestra 실행
+      - name: Run Orchestra
+        run: |
+          cd orchestra
+          python executors/iwl_executor.py \
+            --issue-id ${{ github.event.issue.number }} \
+            --workflow feature_development

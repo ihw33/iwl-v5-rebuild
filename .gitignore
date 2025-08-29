@@ -1,76 +1,45 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Testing
-coverage/
-*.lcov
-.nyc_output
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Next.js
-.next/
-out/
-build/
-dist/
+# testing
+/coverage
 
-# Production
-*.local
+# next.js
+/.next/
+/out/
 
-# Debug
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# env files (can opt-in for committing if needed)
+.env*
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
+# vercel
+.vercel
 
-# TypeScript
+# typescript
 *.tsbuildinfo
 next-env.d.ts
 
-# Vercel
-.vercel
-
-# PWA
-public/sw.js
-public/workbox-*.js
-
-# Misc
-*.log
-.cache/
-.temp/
-.tmp/
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# OS
-Thumbs.db
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
+# figma downloads (temporary files)
+/figma-downloads/*
+!/figma-downloads/README.md
